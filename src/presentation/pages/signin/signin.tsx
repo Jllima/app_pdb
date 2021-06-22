@@ -1,10 +1,11 @@
 import React from 'react'
-import {View, Text} from 'react-native'
+import {View, Button} from 'react-native'
+import Styles from './styles'
 
 const SignIn: React.FC = () => {
   return (
-    <View>
-      <Text>Signin</Text>
+    <View style={Styles.container}>
+      <Button title="Entrar" onPress={() => {}} />
     </View>
   )
 }
