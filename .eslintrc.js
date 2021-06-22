@@ -29,6 +29,7 @@ module.exports = {
     ],
     semi: ['error', 'never'],
     '@typescript-eslint/consistent-type-definitions': 'off',
+    '@typescript-eslint/consistent-type-assertions': 'off',
     '@typescript-eslint/strict-boolean-expressions': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/comma-spacing': 'off',
