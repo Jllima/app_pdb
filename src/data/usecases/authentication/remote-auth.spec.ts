@@ -1,48 +1,13 @@
-import {AccountModel} from '@pdb/domain/models/account-model'
+import {InvalidCredentialsError} from '@pdb/domain/errors'
+import {StatusCode} from '@pdb/domain/protocols/http'
 import {
-  HttpClient,
-  HttpRequest,
-  HttpResponse,
-  StatusCode,
-} from '@pdb/domain/protocols/http'
-import {mockAuthenticationParams} from '@pdb/domain/test/mock-authentication'
-import {AuthParams} from '@pdb/domain/usecases/auth/authentication'
+  mockAuthenticationModel,
+  mockAuthenticationParams,
+} from '@pdb/domain/test/mock-authentication'
 
 import faker from 'faker'
-
-export class HttpClientSpy<R = any> implements HttpClient {
-  url?: string
-  method?: string
-  body?: any
-  headers?: any
-  response: HttpResponse<R> = {
-    statusCode: StatusCode.ok,
-  }
-
-  async request(data: HttpRequest): Promise<HttpResponse<R>> {
-    this.url = data.url
-    this.method = data.method
-    this.body = data.body
-    this.headers = data.headers
-
-    return this.response
-  }
-}
-
-export class RemoteAuth {
-  constructor(
-    private readonly url: string,
-    private readonly httpClient: HttpClient<AccountModel>,
-  ) {}
-
-  async auth(params: AuthParams): Promise<void> {
-    this.httpClient.request({
-      url: this.url,
-      method: 'post',
-      body: params,
-    })
-  }
-}
+import {RemoteAuth} from '@pdb/data/usecases'
+import {HttpClientSpy} from '@pdb/data/test'
 
 type SutTypes = {
   sut: RemoteAuth
@@ -70,5 +35,29 @@ describe('RemoteAuth', () => {
     expect(httpClientSpy.url).toEqual(url)
     expect(httpClientSpy.method).toBe('post')
     expect(httpClientSpy.body).toEqual(authenticationParams)
+  })
+
+  it('Should throw InvalidCredentialsError if HttpClient returns 401', async () => {
+    const {sut, httpClientSpy} = makeSut()
+    httpClientSpy.response = {
+      statusCode: StatusCode.unauthorized,
+    }
+
+    const promise = sut.auth(mockAuthenticationParams())
+
+    await expect(promise).rejects.toThrow(new InvalidCredentialsError())
+  })
+
+  it('Should return an AccountModel if HttpClient returns 200', async () => {
+    const {sut, httpClientSpy} = makeSut()
+    const httpResult = mockAuthenticationModel()
+    httpClientSpy.response = {
+      statusCode: StatusCode.ok,
+      body: httpResult,
+    }
+
+    const account = await sut.auth(mockAuthenticationParams())
+
+    expect(account).toEqual(httpResult)
   })
 })
