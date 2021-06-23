@@ -1,6 +1,6 @@
 import {AccountModel} from '@pdb/domain/models/account-model'
 
-type AuthParams = {
+export type AuthParams = {
   identity: string
   password: string
 }
