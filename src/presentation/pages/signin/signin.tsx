@@ -1,16 +1,26 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import {View, Button} from 'react-native'
 import Styles from './styles'
-import AuthContext from '@pdb/presentation/contexts/auth'
+// import AuthContext from '@pdb/presentation/contexts/auth'
+import {Authentication} from '@pdb/domain/usecases/auth/authentication'
 
-const SignIn: React.FC = () => {
-  const {signed} = useContext(AuthContext)
+type Props = {
+  authentication: Authentication
+}
 
-  console.log(signed)
+const SignIn: React.FC<Props> = ({authentication}: Props) => {
+  // const {signed} = useContext(AuthContext)
 
-  const handleSignIn = (): Object => {
-    return {
-      token: 'jdsjjlkjj948324809',
+  const handleSignIn = async (): Promise<void> => {
+    try {
+      const response = await authentication.auth({
+        identity: 'user_1',
+        password: '123abc',
+      })
+      console.log(response.auth_token)
+    } catch (error: any) {
+      const messageError: string = error.message
+      console.log(`Error Auth: ${messageError}`)
     }
   }
 

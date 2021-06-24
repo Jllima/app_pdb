@@ -1,5 +1,5 @@
 import React from 'react'
-import {SignIn} from '@pdb/presentation/pages'
+import {createSignIn} from '@pdb/main/factories'
 
 import {createStackNavigator} from '@react-navigation/stack'
 
@@ -7,7 +7,7 @@ const AuthStack = createStackNavigator()
 
 const AuthRoutes: React.FC = () => (
   <AuthStack.Navigator>
-    <AuthStack.Screen name="SignIn" component={SignIn} />
+    <AuthStack.Screen name="SignIn" component={createSignIn} />
   </AuthStack.Navigator>
 )
 
