@@ -1,8 +1,8 @@
 import React from 'react'
-import {View, Button, TextInput} from 'react-native'
-import Styles from './styles'
+import {Container, Input, Button, ButtonText, Logo} from './styles'
 // import AuthContext from '@pdb/presentation/contexts/auth'
 import {Authentication} from '@pdb/domain/usecases/auth/authentication'
+import {imgLogo} from '@pdb/presentation/assets'
 
 type Props = {
   authentication: Authentication
@@ -25,14 +25,23 @@ const SignIn: React.FC<Props> = ({authentication}: Props) => {
   }
 
   return (
-    <View style={Styles.container}>
-      <TextInput
-        placeholder="Email"
+    <Container>
+      <Logo source={imgLogo} resizeMode="contain" />
+      <Input
+        placeholder="Matrícula"
         autoCorrect={false}
         autoCapitalize="none"
       />
-      <Button title="Entrar" onPress={handleSignIn} />
-    </View>
+      <Input
+        placeholder="Senha"
+        autoCorrect={false}
+        autoCapitalize="none"
+        secureTextEntry
+      />
+      <Button onPress={handleSignIn}>
+        <ButtonText>Entrar</ButtonText>
+      </Button>
+    </Container>
   )
 }
 
