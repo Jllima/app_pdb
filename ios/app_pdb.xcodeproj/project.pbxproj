@@ -41,6 +41,9 @@
 		771379E7AC885FCD22ADB055 /* libPods-app_pdb-app_pdbTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-app_pdb-app_pdbTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = app_pdb/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8504E6B79B19B9F0099F7FF /* libPods-app_pdb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-app_pdb.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBF117D42687B16900BE98C8 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		BBF117D52687B1B800BE98C8 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		BBF117D62687B1B900BE98C8 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		CF99A217146C0AFFC1A4ACB5 /* Pods-app_pdb-app_pdbTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app_pdb-app_pdbTests.debug.xcconfig"; path = "Target Support Files/Pods-app_pdb-app_pdbTests/Pods-app_pdb-app_pdbTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D848C0382AF51B6AF5525674 /* Pods-app_pdb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app_pdb.debug.xcconfig"; path = "Target Support Files/Pods-app_pdb/Pods-app_pdb.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -86,6 +89,7 @@
 		13B07FAE1A68108700A75B9A /* app_pdb */ = {
 			isa = PBXGroup;
 			children = (
+				BBF117CF2687AC7B00BE98C8 /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -137,6 +141,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		BBF117CF2687AC7B00BE98C8 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				BBF117D52687B1B800BE98C8 /* Feather.ttf */,
+				BBF117D62687B1B900BE98C8 /* FontAwesome.ttf */,
+				BBF117D42687B16900BE98C8 /* MaterialIcons.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		E62EAA0AFD71BC8FF88BAE74 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,7 +159,6 @@
 				CF99A217146C0AFFC1A4ACB5 /* Pods-app_pdb-app_pdbTests.debug.xcconfig */,
 				0A8FD125EC4041A668F3CAFF /* Pods-app_pdb-app_pdbTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
