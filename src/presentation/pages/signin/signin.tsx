@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container, Input, Button, ButtonText, Logo} from './styles'
+import {Container, Input, Button, ButtonText, Logo, Icon} from './styles'
 // import AuthContext from '@pdb/presentation/contexts/auth'
 import {Authentication} from '@pdb/domain/usecases/auth/authentication'
 import {imgLogo} from '@pdb/presentation/assets'
@@ -40,6 +40,7 @@ const SignIn: React.FC<Props> = ({authentication}: Props) => {
       />
       <Button onPress={handleSignIn}>
         <ButtonText>Entrar</ButtonText>
+        <Icon name="log-in" size={20} color="#FFFFFF" />
       </Button>
     </Container>
   )

@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import styled from 'styled-components/native'
 import Colors from '@pdb/presentation/styles/colors'
+import FeatherIcon from 'react-native-vector-icons/Feather'
 
 const Container = styled.View`
   flex: 1;
@@ -32,6 +33,9 @@ const Button = styled.TouchableOpacity`
   alignSelf: stretch;
   marginHorizontal: 20px;
   marginTop: 15px;
+  flexDirection: row;
+  justify-content: center;
+  align-items: center;
 `
 
 const ButtonText = styled.Text`
@@ -41,4 +45,8 @@ const ButtonText = styled.Text`
   textAlign: center;
 `
 
-export {Container, Input, Button, ButtonText, Logo}
+const Icon = styled(FeatherIcon)`
+  margin-left: 5px;
+`
+
+export {Container, Input, Button, ButtonText, Logo, Icon}
