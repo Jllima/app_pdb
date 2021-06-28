@@ -1,11 +1,11 @@
 import React, {useState, useContext} from 'react'
-import {ActivityIndicator, Text} from 'react-native'
-import {Container, Button, ButtonText, Logo, Icon} from './styles'
+import {Text} from 'react-native'
+import {Container, Logo} from './styles'
 import {Authentication} from '@pdb/domain/usecases/auth/authentication'
 import {imgLogo} from '@pdb/presentation/assets'
 import {AuthContext} from '@pdb/presentation/contexts'
 import {useNavigation} from '@react-navigation/native'
-import {Input} from '@pdb/presentation/components'
+import {Input, SubmitButton} from '@pdb/presentation/components'
 
 type Props = {
   authentication: Authentication
@@ -57,16 +57,9 @@ const SignIn: React.FC<Props> = ({authentication}: Props) => {
         secureTextEntry
         onChangeText={text => setState({...state, password: text})}
       />
-      <Button onPress={handleSignIn}>
-        {state.isLoading ? (
-          <ActivityIndicator color="#FFFFFF" />
-        ) : (
-          <>
-            <ButtonText>Entrar</ButtonText>
-            <Icon name="log-in" size={20} color="#FFFFFF" />
-          </>
-        )}
-      </Button>
+      <SubmitButton onPress={handleSignIn} loading={state.isLoading}>
+        Entrar
+      </SubmitButton>
     </Container>
   )
 }
