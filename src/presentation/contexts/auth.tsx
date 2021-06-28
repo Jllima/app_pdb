@@ -1,15 +1,20 @@
 import React, {createContext, useState} from 'react'
 import AsyncStorage from '@react-native-community/async-storage'
+import jwtDecode from 'jwt-decode'
 
 interface AuthContextData {
-  signed: boolean
   token: string
   saveAccount: (accesaToken: string) => Promise<void>
 }
 
 type AuthData = {
-  token: string
-  nameUser: string
+  accessToken: string
+  userName: string
+  confirmation: boolean
+}
+
+type TokenData = {
+  name: string
   confirmation: boolean
 }
 
@@ -20,20 +25,20 @@ export const AuthProvider: React.FC = ({children}) => {
 
   const saveAccount = async (accessToken: any): Promise<void> => {
     try {
+      const {name, confirmation} = jwtDecode<TokenData>(accessToken)
       await AsyncStorage.multiSet([
-        '@Pdb:access_token',
-        JSON.parse(accessToken),
+        ['@pdb:access_token', accessToken],
+        ['@pdb:user_name', name],
       ])
 
-      setData({...data, token: accessToken})
+      setData({...data, accessToken, userName: name, confirmation})
     } catch (error) {
       console.log(error)
     }
   }
 
   return (
-    <AuthContext.Provider
-      value={{signed: false, token: data.token, saveAccount}}>
+    <AuthContext.Provider value={{token: data.accessToken, saveAccount}}>
       {children}
     </AuthContext.Provider>
   )
