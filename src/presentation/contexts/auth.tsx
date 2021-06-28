@@ -32,7 +32,8 @@ export const AuthProvider: React.FC = ({children}) => {
   }
 
   return (
-    <AuthContext.Provider value={{signed: false, token: '', saveAccount}}>
+    <AuthContext.Provider
+      value={{signed: false, token: data.token, saveAccount}}>
       {children}
     </AuthContext.Provider>
   )
