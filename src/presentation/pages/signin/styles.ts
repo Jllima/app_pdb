@@ -14,17 +14,6 @@ const Logo = styled.Image`
   marginBottom: 40px;
 `
 
-const Input = styled.TextInput`
-  paddingHorizontal: 20px;
-  paddingVertical: 15px;
-  borderRadius: 25px;
-  backgroundColor: ${Colors.ligthGrey};
-  alignSelf: stretch;
-  marginBottom: 25px;
-  marginHorizontal: 20px;
-  fontSize: 16px;
-`
-
 const Button = styled.TouchableOpacity`
   paddingHorizontal: 20px;
   paddingVertical: 15px;
@@ -49,4 +38,4 @@ const Icon = styled(FeatherIcon)`
   margin-left: 5px;
 `
 
-export {Container, Input, Button, ButtonText, Logo, Icon}
+export {Container, Button, ButtonText, Logo, Icon}

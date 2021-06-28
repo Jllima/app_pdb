@@ -1,10 +1,11 @@
 import React, {useState, useContext} from 'react'
 import {ActivityIndicator, Text} from 'react-native'
-import {Container, Input, Button, ButtonText, Logo, Icon} from './styles'
+import {Container, Button, ButtonText, Logo, Icon} from './styles'
 import {Authentication} from '@pdb/domain/usecases/auth/authentication'
 import {imgLogo} from '@pdb/presentation/assets'
 import {AuthContext} from '@pdb/presentation/contexts'
 import {useNavigation} from '@react-navigation/native'
+import {Input} from '@pdb/presentation/components'
 
 type Props = {
   authentication: Authentication
