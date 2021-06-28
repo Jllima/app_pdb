@@ -57,7 +57,10 @@ const SignIn: React.FC<Props> = ({authentication}: Props) => {
         secureTextEntry
         onChangeText={text => setState({...state, password: text})}
       />
-      <SubmitButton onPress={handleSignIn} loading={state.isLoading}>
+      <SubmitButton
+        onPress={handleSignIn}
+        loading={state.isLoading}
+        iconName="log-in">
         Entrar
       </SubmitButton>
     </Container>

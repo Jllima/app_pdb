@@ -6,9 +6,15 @@ import {RectButtonProperties} from 'react-native-gesture-handler'
 interface ButtonProps extends RectButtonProperties {
   children: string
   loading: boolean
+  iconName: string
 }
 
-const SubmitButton: React.FC<ButtonProps> = ({loading, children, ...rest}) => {
+const SubmitButton: React.FC<ButtonProps> = ({
+  iconName,
+  loading,
+  children,
+  ...rest
+}) => {
   return (
     <Container {...rest}>
       {loading ? (
@@ -16,7 +22,7 @@ const SubmitButton: React.FC<ButtonProps> = ({loading, children, ...rest}) => {
       ) : (
         <>
           <ButtonText>{children}</ButtonText>
-          <Icon name="log-in" size={20} color="#FFFFFF" />
+          <Icon name={iconName} size={20} color="#FFFFFF" />
         </>
       )}
     </Container>

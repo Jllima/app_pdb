@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
-import {Text, ActivityIndicator} from 'react-native'
-import {Container, Input, Logo, Button, ButtonText, Icon} from './styles'
+import {Text} from 'react-native'
+import {Container, Logo} from './styles'
 import {imgLogo} from '@pdb/presentation/assets'
+import {SubmitButton, Input} from '@pdb/presentation/components'
 
 const Confirmation: React.FC = () => {
   const [state, setState] = useState({
@@ -27,16 +28,9 @@ const Confirmation: React.FC = () => {
         secureTextEntry
         onChangeText={text => setState({...state, passwordConfirmation: text})}
       />
-      <Button>
-        {state.isLoading ? (
-          <ActivityIndicator color="#FFFFFF" />
-        ) : (
-          <>
-            <ButtonText>Salvar</ButtonText>
-            <Icon name="log-in" size={20} color="#FFFFFF" />
-          </>
-        )}
-      </Button>
+      <SubmitButton loading={false} iconName="save">
+        Salvar
+      </SubmitButton>
     </Container>
   )
 }
