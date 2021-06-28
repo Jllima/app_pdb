@@ -1,14 +1,19 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import {ActivityIndicator, Text} from 'react-native'
 import {Container, Input, Button, ButtonText, Logo, Icon} from './styles'
 import {Authentication} from '@pdb/domain/usecases/auth/authentication'
 import {imgLogo} from '@pdb/presentation/assets'
+import {AuthContext} from '@pdb/presentation/contexts'
+import {useNavigation} from '@react-navigation/native'
 
 type Props = {
   authentication: Authentication
 }
 
 const SignIn: React.FC<Props> = ({authentication}: Props) => {
+  const navigation = useNavigation()
+  const {saveAccount} = useContext(AuthContext)
+
   const [state, setState] = useState({
     identity: '',
     password: '',
@@ -25,7 +30,8 @@ const SignIn: React.FC<Props> = ({authentication}: Props) => {
         password: password,
       })
       setState({...state, isLoading: false})
-      console.log(response.auth_token)
+      saveAccount(response.auth_token)
+      navigation.navigate('Menu')
     } catch (error: any) {
       const messageError: string = error.message
       setState({...state, isLoading: false, errorMessage: messageError})
