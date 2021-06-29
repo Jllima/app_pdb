@@ -7,6 +7,7 @@ interface AuthContextData {
   token: string
   user: UserModel
   saveAccount: (accesaToken: string) => Promise<void>
+  updateStateAccount: (user: UserModel) => void
 }
 
 type TokenData = {
@@ -50,11 +51,25 @@ export const AuthProvider: React.FC = ({children}) => {
     }
   }
 
+  const updateStateAccount = (user: UserModel): void => {
+    const {id, name, confirmation} = user
+
+    setData({
+      ...data,
+      user: {
+        id,
+        name,
+        confirmation,
+      },
+    })
+  }
+
   return (
     <AuthContext.Provider
       value={{
         token: data.accessToken,
         saveAccount,
+        updateStateAccount,
         user: data.user,
       }}>
       {children}
