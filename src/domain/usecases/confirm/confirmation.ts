@@ -9,6 +9,6 @@ export type ConfirmDataParams = {
   data: ConfirmParams
 }
 
-export interface Authentication {
+export interface Confirmation {
   confirm: (params: ConfirmDataParams) => Promise<UserDataModel>
 }
