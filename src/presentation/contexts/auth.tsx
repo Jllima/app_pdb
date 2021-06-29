@@ -1,31 +1,36 @@
 import React, {createContext, useState} from 'react'
 import AsyncStorage from '@react-native-community/async-storage'
 import jwtDecode from 'jwt-decode'
+import {UserModel} from '@pdb/domain/models/user-model'
 
 interface AuthContextData {
   token: string
-  confirmation: boolean
+  user: UserModel
   saveAccount: (accesaToken: string) => Promise<void>
 }
 
 type TokenData = {
+  user_id: string
   name: string
   confirmation: boolean
+}
+
+type StateData = {
+  accessToken: string
+  user: UserModel
+  isLoading?: boolean
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 
 export const AuthProvider: React.FC = ({children}) => {
-  const [data, setData] = useState({
-    accessToken: '',
-    userName: '',
-    confirmation: false,
-    isLoading: false,
-  })
+  const [data, setData] = useState<StateData>({} as StateData)
 
   const saveAccount = async (accessToken: any): Promise<void> => {
     try {
-      const {name, confirmation} = jwtDecode<TokenData>(accessToken)
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      const {user_id, name, confirmation} = jwtDecode<TokenData>(accessToken)
+
       await AsyncStorage.multiSet([
         ['@pdb:access_token', accessToken],
         ['@pdb:user_name', name],
@@ -34,9 +39,11 @@ export const AuthProvider: React.FC = ({children}) => {
       setData({
         ...data,
         accessToken,
-        userName: name,
-        confirmation,
-        isLoading: true,
+        user: {
+          id: user_id,
+          name,
+          confirmation,
+        },
       })
     } catch (error) {
       console.log(error)
@@ -48,7 +55,7 @@ export const AuthProvider: React.FC = ({children}) => {
       value={{
         token: data.accessToken,
         saveAccount,
-        confirmation: data.confirmation,
+        user: data.user,
       }}>
       {children}
     </AuthContext.Provider>

@@ -31,7 +31,7 @@ const SignIn: React.FC<Props> = ({authentication}: Props) => {
         password: password,
       })
       setState({...state, isLoading: false})
-      saveAccount(response.auth_token)
+      await saveAccount(response.auth_token)
       navigation.navigate('ConfirmOrMenu')
     } catch (error: any) {
       const messageError: string = error.message
