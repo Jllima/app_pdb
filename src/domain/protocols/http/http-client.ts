@@ -1,6 +1,7 @@
 export type HttpMethod = 'get' | 'post' | 'put' | 'delete'
 
 export enum StatusCode {
+  created = 201,
   ok = 200,
   noContent = 204,
   badRequest = 400,

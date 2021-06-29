@@ -4,7 +4,7 @@ import {ConfirmDataParams} from '../usecases/confirm/confirmation'
 
 export const mockUserDataModel = (): UserDataModel => ({
   data: {
-    id: 1,
+    id: '1',
     confirmation: true,
     identity: 'user_1',
     name: 'Usuário 1',

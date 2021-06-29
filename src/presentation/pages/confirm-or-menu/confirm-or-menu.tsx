@@ -5,7 +5,6 @@ import {CreateConfirmPage} from '@pdb/main/factories'
 
 const ConfirmOrMenu: React.FC = () => {
   const {user} = useContext(AuthContext)
-  console.log({...user})
   return user.confirmation ? (
     <Menu />
   ) : (

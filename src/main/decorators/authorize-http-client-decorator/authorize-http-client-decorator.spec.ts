@@ -60,7 +60,6 @@ describe('AuthorizeHttpGetClientDecorator', () => {
 
     expect(httpClientSpy.url).toBe(httpRequest.url)
     expect(httpClientSpy.method).toBe(httpRequest.method)
-    console.log(getStorageSpy.value)
     expect(httpClientSpy.headers).toEqual({
       Authorization: getStorageSpy.value,
     })

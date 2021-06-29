@@ -17,15 +17,18 @@ const Confirmation: React.FC<Props> = ({remoteConfirm}: Props) => {
   })
 
   const handleConfirm = async (): Promise<void> => {
+    const {password, passwordConfirmation} = state
+    setState({...state, isLoading: true})
     try {
-      const response = await remoteConfirm.confirm({
+      await remoteConfirm.confirm({
         data: {
-          password: 'abc123',
-          password_confirmation: 'abc123',
+          password,
+          password_confirmation: passwordConfirmation,
         },
       })
-      console.log(response)
+      setState({...state, isLoading: false})
     } catch (error) {
+      setState({...state, isLoading: false})
       console.log(error)
     }
   }
@@ -38,6 +41,7 @@ const Confirmation: React.FC<Props> = ({remoteConfirm}: Props) => {
         placeholder="Nova senha"
         autoCorrect={false}
         autoCapitalize="none"
+        secureTextEntry
         onChangeText={text => setState({...state, password: text})}
       />
       <Input
@@ -47,7 +51,10 @@ const Confirmation: React.FC<Props> = ({remoteConfirm}: Props) => {
         secureTextEntry
         onChangeText={text => setState({...state, passwordConfirmation: text})}
       />
-      <SubmitButton loading={false} iconName="save" onPress={handleConfirm}>
+      <SubmitButton
+        loading={state.isLoading}
+        iconName="save"
+        onPress={handleConfirm}>
         Salvar
       </SubmitButton>
     </Container>
