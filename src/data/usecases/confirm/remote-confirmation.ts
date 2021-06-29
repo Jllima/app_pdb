@@ -20,7 +20,7 @@ export class RemoteConfirmation implements Confirmation {
     })
 
     switch (httpResponse.statusCode) {
-      case StatusCode.ok:
+      case StatusCode.created:
         return httpResponse.body as UserDataModel
       case StatusCode.unauthorized:
         throw new ForbiddenError()

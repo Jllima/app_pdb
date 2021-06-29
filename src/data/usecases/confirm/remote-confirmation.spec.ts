@@ -1,4 +1,5 @@
 import {HttpClientSpy} from '@pdb/data/test'
+import {StatusCode} from '@pdb/domain/protocols/http'
 import {mockConfirmationParams} from '@pdb/domain/test/mock-confirmation'
 import faker from 'faker'
 import {RemoteConfirmation} from './remote-confirmation'
@@ -22,6 +23,7 @@ describe('RemoteConfirmation', () => {
   it('Should call HttpClient with correct values', async () => {
     const url = faker.internet.url()
     const {sut, httpClientSpy} = makeSut(url)
+    httpClientSpy.response.statusCode = StatusCode.created
     const authenticationParams = mockConfirmationParams()
 
     await sut.confirm(authenticationParams)
