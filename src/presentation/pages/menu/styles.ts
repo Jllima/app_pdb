@@ -8,9 +8,6 @@ const Container = styled.View`
   justifyContent: center;
   backgroundColor: ${Colors.write};
 `
-const Logo = styled.Image`
-  height: 25%;
-  marginBottom: 40px;
-`
 
-export {Container, Logo}
+
+export {Container}

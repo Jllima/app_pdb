@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react'
-import {Text} from 'react-native'
+import {Alert} from 'react-native'
 import {Container, Logo} from './styles'
 import {Authentication} from '@pdb/domain/usecases/auth/authentication'
 import {imgLogo} from '@pdb/presentation/assets'
@@ -36,13 +36,12 @@ const SignIn: React.FC<Props> = ({authentication}: Props) => {
     } catch (error: any) {
       const messageError: string = error.message
       setState({...state, isLoading: false, errorMessage: messageError})
-      console.log(`Error Auth: ${messageError}`)
+      Alert.alert(messageError)
     }
   }
 
   return (
     <Container>
-      <Text>{state.errorMessage}</Text>
       <Logo source={imgLogo} resizeMode="contain" />
       <Input
         placeholder="Matrícula"
