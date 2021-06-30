@@ -1,13 +1,8 @@
 import React from 'react'
-import {Text} from 'react-native'
-import {Container} from './styles'
+import HeaderApp from '@pdb/presentation/components/header-app/header-app'
 
 const Menu: React.FC = () => {
-  return (
-    <Container>
-      <Text>Menu</Text>
-    </Container>
-  )
+  return <HeaderApp />
 }
 
 export default Menu
