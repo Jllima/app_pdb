@@ -1,5 +1,5 @@
 import {HttpClientSpy, mockErrorsDetails} from '@pdb/data/test'
-import {UnprocessableEntityError} from '@pdb/domain/errors'
+import {DetailError} from '@pdb/domain/errors'
 import {StatusCode} from '@pdb/domain/protocols/http'
 import {mockConfirmationParams} from '@pdb/domain/test/mock-confirmation'
 import faker from 'faker'
@@ -45,8 +45,6 @@ describe('RemoteConfirmation', () => {
 
     const promise = sut.confirm(mockConfirmationParams())
 
-    await expect(promise).rejects.toThrow(
-      new UnprocessableEntityError(errorsDetails),
-    )
+    await expect(promise).rejects.toThrow(new DetailError(errorsDetails))
   })
 })

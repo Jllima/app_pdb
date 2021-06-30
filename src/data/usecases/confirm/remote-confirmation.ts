@@ -1,5 +1,5 @@
 import {ErrorsDetailsModel} from '@pdb/data/models'
-import {UnexpectedError, UnprocessableEntityError} from '@pdb/domain/errors'
+import {DetailError} from '@pdb/domain/errors'
 import {UserDataModel} from '@pdb/domain/models/user-model'
 import {HttpClient, StatusCode} from '@pdb/domain/protocols/http'
 import {
@@ -20,15 +20,9 @@ export class RemoteConfirmation implements Confirmation {
       body: params,
     })
 
-    switch (httpResponse.statusCode) {
-      case StatusCode.created:
-        return httpResponse.body as UserDataModel
-      case StatusCode.unprocessableEntity:
-        throw new UnprocessableEntityError(
-          httpResponse.body as ErrorsDetailsModel,
-        )
-      default:
-        throw new UnexpectedError()
-    }
+    if (httpResponse.statusCode === StatusCode.created)
+      return httpResponse.body as UserDataModel
+
+    throw new DetailError(httpResponse.body as ErrorsDetailsModel)
   }
 }

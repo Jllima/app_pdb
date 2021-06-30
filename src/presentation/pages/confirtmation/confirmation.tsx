@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react'
-import {Text} from 'react-native'
+import {Text, Alert} from 'react-native'
 import {Container, Logo} from './styles'
 import {imgLogo} from '@pdb/presentation/assets'
 import {SubmitButton, Input} from '@pdb/presentation/components'
@@ -35,7 +35,7 @@ const Confirmation: React.FC<Props> = ({remoteConfirm}: Props) => {
       navigation.navigate('ConfirmOrMenu')
     } catch (error) {
       setState({...state, isLoading: false})
-      console.log(error)
+      console.log(error.getErrors())
     }
   }
 

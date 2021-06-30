@@ -1,6 +1,6 @@
 export type ErrorsDetailsModel = {
-  title: string
-  status: string
+  title?: string
+  status?: string
   errors: ErrorsModel[]
 }
 
