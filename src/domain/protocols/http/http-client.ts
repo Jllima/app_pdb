@@ -9,7 +9,7 @@ export enum StatusCode {
   forbidden = 403,
   notFound = 404,
   notAcceptable = 406,
-  notContent = 422,
+  unprocessableEntity = 422,
   serverError = 500,
 }
 
