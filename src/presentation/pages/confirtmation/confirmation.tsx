@@ -6,6 +6,8 @@ import {SubmitButton, Input} from '@pdb/presentation/components'
 import {RemoteConfirmation} from '@pdb/data/usecases'
 import {useNavigation} from '@react-navigation/native'
 import {AuthContext} from '@pdb/presentation/contexts'
+import {GetMessageError} from '@pdb/domain/errors'
+import {ErrorsModel} from '@pdb/data/models'
 
 type Props = {
   remoteConfirm: RemoteConfirmation
@@ -34,8 +36,10 @@ const Confirmation: React.FC<Props> = ({remoteConfirm}: Props) => {
       updateStateAccount(response.data)
       navigation.navigate('ConfirmOrMenu')
     } catch (error) {
+      const errorObject = error as GetMessageError
       setState({...state, isLoading: false})
-      console.log(error.getErrors())
+      const errors: ErrorsModel[] = errorObject.getErrors() as ErrorsModel[]
+      Alert.alert(errors.map(err => err.detail).join('\n'))
     }
   }
 
