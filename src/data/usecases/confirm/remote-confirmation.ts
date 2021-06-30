@@ -1,4 +1,5 @@
-import {ForbiddenError, UnexpectedError} from '@pdb/domain/errors'
+import {ErrorsDetailsModel} from '@pdb/data/models'
+import {UnexpectedError, UnprocessableEntityError} from '@pdb/domain/errors'
 import {UserDataModel} from '@pdb/domain/models/user-model'
 import {HttpClient, StatusCode} from '@pdb/domain/protocols/http'
 import {
@@ -9,7 +10,7 @@ import {
 export class RemoteConfirmation implements Confirmation {
   constructor(
     private readonly url: string,
-    private readonly httpClient: HttpClient<UserDataModel>,
+    private readonly httpClient: HttpClient<UserDataModel | ErrorsDetailsModel>,
   ) {}
 
   async confirm(params: ConfirmDataParams): Promise<UserDataModel> {
@@ -22,8 +23,10 @@ export class RemoteConfirmation implements Confirmation {
     switch (httpResponse.statusCode) {
       case StatusCode.created:
         return httpResponse.body as UserDataModel
-      case StatusCode.unauthorized:
-        throw new ForbiddenError()
+      case StatusCode.unprocessableEntity:
+        throw new UnprocessableEntityError(
+          httpResponse.body as ErrorsDetailsModel,
+        )
       default:
         throw new UnexpectedError()
     }
