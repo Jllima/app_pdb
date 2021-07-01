@@ -1,7 +1,7 @@
 import React from 'react'
 import {createSignIn} from '@pdb/main/factories'
 import {ConfirmOrMenu} from '@pdb/presentation/pages'
-
+import AppRoutes from './app.routes'
 import {createStackNavigator} from '@react-navigation/stack'
 
 const AuthStack = createStackNavigator()
@@ -16,6 +16,11 @@ const AuthRoutes: React.FC = () => (
     <AuthStack.Screen
       name="ConfirmOrMenu"
       component={ConfirmOrMenu}
+      options={{headerShown: false}}
+    />
+    <AuthStack.Screen
+      name="AppRoutes"
+      component={AppRoutes}
       options={{headerShown: false}}
     />
   </AuthStack.Navigator>
