@@ -1,8 +1,8 @@
 import {Platform} from 'react-native'
 
 const host = Platform.select({
-  ios: 'localhost',
-  android: '10.0.2.2',
+  ios: 'http://localhost:3003',
+  android: 'https://apipdb.herokuapp.com',
 })
 
-export const basUrl = `http://${host as string}:3003`
+export const basUrl = host

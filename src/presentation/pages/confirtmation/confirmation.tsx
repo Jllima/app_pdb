@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react'
-import {Alert} from 'react-native'
+import {Alert, StatusBar} from 'react-native'
 import {Container, Logo, Title} from './styles'
 import {imgLogo} from '@pdb/presentation/assets'
 import {SubmitButton, Input} from '@pdb/presentation/components'
@@ -43,6 +43,7 @@ const Confirmation: React.FC<Props> = ({remoteConfirm}: Props) => {
 
   return (
     <Container>
+      <StatusBar barStyle="light-content" backgroundColor="#FFFFFF" />
       <Logo source={imgLogo} resizeMode="contain" />
       <Title>Redefinir Senha</Title>
       <Input
@@ -60,9 +61,10 @@ const Confirmation: React.FC<Props> = ({remoteConfirm}: Props) => {
         onChangeText={text => setState({...state, passwordConfirmation: text})}
       />
       <SubmitButton
+        onPress={handleConfirm}
         loading={state.isLoading}
-        iconName="save-outline"
-        onPress={handleConfirm}>
+        enabled={state.enableButton}
+        iconName="save-outline">
         Salvar
       </SubmitButton>
     </Container>
