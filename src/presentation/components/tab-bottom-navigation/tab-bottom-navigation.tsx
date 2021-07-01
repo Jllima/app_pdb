@@ -4,6 +4,7 @@ import {
   BottomTabBarOptions,
 } from '@react-navigation/bottom-tabs'
 import {Footer, FooterTab, Button, Icon, Text} from 'native-base'
+import {HOME, MAKEOS, OS} from '@pdb/constants'
 
 type Props = BottomTabBarProps<BottomTabBarOptions>
 
@@ -12,6 +13,19 @@ const TabBottomNavigation: React.FC<Props> = ({
   descriptors,
   navigation,
 }: Props) => {
+  const iconName = (title: string): string => {
+    switch (title) {
+      case HOME:
+        return 'home'
+      case MAKEOS:
+        return 'document-text'
+      case OS:
+        return 'search'
+      default:
+        return 'settings'
+    }
+  }
+
   return (
     <Footer>
       <FooterTab>
@@ -52,7 +66,7 @@ const TabBottomNavigation: React.FC<Props> = ({
               onPress={onPress}
               onLongPress={onLongPress}
               key={index}>
-              <Icon name={options.icon} />
+              <Icon name={iconName(options.title as string)} />
               <Text>{label}</Text>
             </Button>
           )

@@ -3,7 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import {Menu} from '@pdb/presentation/pages'
 import {Header, Content, Text, View} from 'native-base'
 import {TabBottomNavigation} from '@pdb/presentation/components'
-
+import {HOME, MAKEOS, OS, SETTINGS} from '@pdb/constants'
 const Tab = createBottomTabNavigator()
 
 const Settings: React.FC = () => {
@@ -46,25 +46,13 @@ const SearchOs: React.FC = () => {
 const AppRoutes: React.FC = () => {
   return (
     <Tab.Navigator tabBar={props => <TabBottomNavigation {...props} />}>
-      <Tab.Screen
-        name="Menu"
-        component={Menu}
-        options={{title: 'Início', icon: 'home'}}
-      />
-      <Tab.Screen
-        name="MakeOs"
-        component={MakeOs}
-        options={{title: 'Fazer OS', icon: 'document-text'}}
-      />
-      <Tab.Screen
-        name="SearchOs"
-        component={SearchOs}
-        options={{title: 'OS', icon: 'search'}}
-      />
+      <Tab.Screen name="Menu" component={Menu} options={{title: HOME}} />
+      <Tab.Screen name="MakeOs" component={MakeOs} options={{title: MAKEOS}} />
+      <Tab.Screen name="SearchOs" component={SearchOs} options={{title: OS}} />
       <Tab.Screen
         name="Settings"
         component={Settings}
-        options={{title: 'conta', icon: 'settings'}}
+        options={{title: SETTINGS}}
       />
     </Tab.Navigator>
   )
