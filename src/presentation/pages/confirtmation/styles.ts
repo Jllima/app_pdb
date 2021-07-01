@@ -14,4 +14,10 @@ const Logo = styled.Image`
   marginBottom: 40px;
 `
 
-export {Container, Logo}
+const Title = styled.Text`
+  font-size: 25px;
+  color: ${Colors.primaryColor};
+  margin-bottom: 40px;
+`
+
+export {Container, Logo, Title}

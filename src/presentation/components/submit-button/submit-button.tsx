@@ -1,6 +1,6 @@
 import React from 'react'
 import {ActivityIndicator} from 'react-native'
-import {Container, ButtonText, Icon} from './styles'
+import {Container, ButtonText, IconButtom} from './styles'
 import {RectButtonProperties} from 'react-native-gesture-handler'
 
 interface ButtonProps extends RectButtonProperties {
@@ -22,7 +22,7 @@ const SubmitButton: React.FC<ButtonProps> = ({
       ) : (
         <>
           <ButtonText>{children}</ButtonText>
-          <Icon name={iconName} size={20} color="#FFFFFF" />
+          <IconButtom name={iconName} />
         </>
       )}
     </Container>

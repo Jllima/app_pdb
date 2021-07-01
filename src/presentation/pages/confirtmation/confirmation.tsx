@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react'
-import {Text, Alert} from 'react-native'
-import {Container, Logo} from './styles'
+import {Alert} from 'react-native'
+import {Container, Logo, Title} from './styles'
 import {imgLogo} from '@pdb/presentation/assets'
 import {SubmitButton, Input} from '@pdb/presentation/components'
 import {RemoteConfirmation} from '@pdb/data/usecases'
@@ -18,11 +18,12 @@ const Confirmation: React.FC<Props> = ({remoteConfirm}: Props) => {
     password: '',
     passwordConfirmation: '',
     isLoading: false,
+    enableButton: true,
   })
 
   const handleConfirm = async (): Promise<void> => {
     const {password, passwordConfirmation} = state
-    setState({...state, isLoading: true})
+    setState({...state, isLoading: true, enableButton: false})
     try {
       const response = await remoteConfirm.confirm({
         data: {
@@ -34,7 +35,7 @@ const Confirmation: React.FC<Props> = ({remoteConfirm}: Props) => {
       updateStateAccount(response.data)
     } catch (error) {
       const errorObject = error as GetMessageError
-      setState({...state, isLoading: false})
+      setState({...state, isLoading: false, enableButton: true})
       const errors: ErrorsModel[] = errorObject.getErrors() as ErrorsModel[]
       Alert.alert(errors.map(err => err.detail).join('\n'))
     }
@@ -43,7 +44,7 @@ const Confirmation: React.FC<Props> = ({remoteConfirm}: Props) => {
   return (
     <Container>
       <Logo source={imgLogo} resizeMode="contain" />
-      <Text>Redefinir Senha</Text>
+      <Title>Redefinir Senha</Title>
       <Input
         placeholder="Nova senha"
         autoCorrect={false}
@@ -60,7 +61,7 @@ const Confirmation: React.FC<Props> = ({remoteConfirm}: Props) => {
       />
       <SubmitButton
         loading={state.isLoading}
-        iconName="save"
+        iconName="save-outline"
         onPress={handleConfirm}>
         Salvar
       </SubmitButton>

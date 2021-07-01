@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import styled from 'styled-components/native'
 import Colors from '@pdb/presentation/styles/colors'
-import FeatherIcon from 'react-native-vector-icons/Feather'
 import { RectButton } from 'react-native-gesture-handler'
+import {Icon} from 'native-base'
 
 const Container = styled(RectButton)`
   paddingHorizontal: 20px;
@@ -23,8 +23,10 @@ const ButtonText = styled.Text`
   fontSize: 18px;
   textAlign: center;
 `
-const Icon = styled(FeatherIcon)`
+const IconButtom = styled(Icon)`
   margin-left: 5px;
+  color: ${Colors.write}
+  font-size: 20px;
 `
 
-export {Container, ButtonText, Icon}
+export {Container, ButtonText, IconButtom}
