@@ -1,45 +1,28 @@
 import React from 'react'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import {Menu} from '@pdb/presentation/pages'
-import {Header, Content, Text, View} from 'native-base'
+import {Menu, Account} from '@pdb/presentation/pages'
+import {Header, Body, Title} from 'native-base'
 import {TabBottomNavigation} from '@pdb/presentation/components'
 import {HOME, MAKEOS, OS, SETTINGS} from '@pdb/constants'
+
 const Tab = createBottomTabNavigator()
 
-const Settings: React.FC = () => {
-  return (
-    <React.Fragment>
-      <Header />
-      <Content>
-        <View>
-          <Text>Conta</Text>
-        </View>
-      </Content>
-    </React.Fragment>
-  )
-}
 const MakeOs: React.FC = () => {
   return (
-    <React.Fragment>
-      <Header />
-      <Content>
-        <View>
-          <Text>Fazer OS</Text>
-        </View>
-      </Content>
-    </React.Fragment>
+    <Header>
+      <Body>
+        <Title>FAZER OS</Title>
+      </Body>
+    </Header>
   )
 }
 const SearchOs: React.FC = () => {
   return (
-    <React.Fragment>
-      <Header />
-      <Content>
-        <View>
-          <Text>Acompanhar OS</Text>
-        </View>
-      </Content>
-    </React.Fragment>
+    <Header>
+      <Body>
+        <Title>ACOMPANHAR OS</Title>
+      </Body>
+    </Header>
   )
 }
 
@@ -51,7 +34,7 @@ const AppRoutes: React.FC = () => {
       <Tab.Screen name="SearchOs" component={SearchOs} options={{title: OS}} />
       <Tab.Screen
         name="Settings"
-        component={Settings}
+        component={Account}
         options={{title: SETTINGS}}
       />
     </Tab.Navigator>

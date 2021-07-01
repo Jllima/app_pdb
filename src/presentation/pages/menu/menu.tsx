@@ -1,7 +1,6 @@
 import React from 'react'
-import HeaderApp from '@pdb/presentation/components/header-app/header-app'
+import {HeaderApp, MenuButton} from '@pdb/presentation/components'
 import {Container} from './styles'
-import {MenuButton} from '@pdb/presentation/components'
 
 const Menu: React.FC = () => {
   return (
