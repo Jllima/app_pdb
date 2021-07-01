@@ -66,7 +66,7 @@ export const AuthProvider: React.FC = ({children}) => {
   const signOut = async (): Promise<void> => {
     await AsyncStorage.multiRemove(['@pdb:access_token', '@pdb:user_name'])
 
-    setData({...data, accessToken: ''})
+    setData({} as StateData)
   }
 
   return (
