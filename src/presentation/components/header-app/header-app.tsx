@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useContext} from 'react'
 import {Header, Body, Title} from 'native-base'
 import {AuthContext} from '@pdb/presentation/contexts'
@@ -8,7 +9,9 @@ const HeaderApp: React.FC = () => {
   return (
     <Header>
       <Body>
-        <Title>SEJA BEM VINDO (A): {user.name}</Title>
+        <Title style={{alignSelf: 'center'}}>
+          Seja Bem vindo (a): {user.name}
+        </Title>
       </Body>
     </Header>
   )
