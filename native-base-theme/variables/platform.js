@@ -134,7 +134,7 @@ export default {
   checkboxTextShadowRadius: 0,
 
   // Color
-  brandPrimary: platform === PLATFORM.IOS ? '#289ABB' : '#3F51B5',
+  brandPrimary: platform === PLATFORM.IOS ? '#289ABB' : '#289ABB',
   brandInfo: '#62B1F6',
   brandSuccess: '#5cb85c',
   brandDanger: '#d9534f',
@@ -187,27 +187,27 @@ export default {
 
   // Footer
   footerHeight: 55,
-  footerDefaultBg: platform === PLATFORM.IOS ? '#F8F8F8' : '#3F51B5',
+  footerDefaultBg: platform === PLATFORM.IOS ? '#F8F8F8' : '#289ABB',
   footerPaddingBottom: 0,
 
   // FooterTab
-  tabBarTextColor: platform === PLATFORM.IOS ? '#6b6b6b' : '#b3c7f9',
+  tabBarTextColor: platform === PLATFORM.IOS ? '#6b6b6b' : '#96d7e9',
   tabBarTextSize: platform === PLATFORM.IOS ? 14 : 11,
   activeTab: platform === PLATFORM.IOS ? '#289ABB' : '#fff',
   sTabBarActiveTextColor: '#289ABB',
   tabBarActiveTextColor: platform === PLATFORM.IOS ? '#289ABB' : '#fff',
-  tabActiveBgColor: platform === PLATFORM.IOS ? '#cde1f9' : '#3F51B5',
+  tabActiveBgColor: platform === PLATFORM.IOS ? '#cde1f9' : '#289ABB',
 
   // Header
   toolbarBtnColor: platform === PLATFORM.IOS ? '#289ABB' : '#fff',
-  toolbarDefaultBg: platform === PLATFORM.IOS ? '#F8F8F8' : '#3F51B5',
+  toolbarDefaultBg: platform === PLATFORM.IOS ? '#F8F8F8' : '#289ABB',
   toolbarHeight: platform === PLATFORM.IOS ? 64 : 56,
   toolbarSearchIconSize: platform === PLATFORM.IOS ? 20 : 23,
   toolbarInputColor: platform === PLATFORM.IOS ? '#CECDD2' : '#fff',
   searchBarHeight: platform === PLATFORM.IOS ? 30 : 40,
   searchBarInputHeight: platform === PLATFORM.IOS ? 30 : 50,
   toolbarBtnTextColor: platform === PLATFORM.IOS ? '#289ABB' : '#fff',
-  toolbarDefaultBorder: platform === PLATFORM.IOS ? '#a7a6ab' : '#3F51B5',
+  toolbarDefaultBorder: platform === PLATFORM.IOS ? '#a7a6ab' : '#289ABB',
   iosStatusbar: platform === PLATFORM.IOS ? 'dark-content' : 'light-content',
   get statusBarColor() {
     return color(this.toolbarDefaultBg).darken(0.2).hex();
@@ -240,7 +240,7 @@ export default {
   lineHeightH2: 27,
   lineHeightH3: 25,
   lineHeight: platform === PLATFORM.IOS ? 20 : 24,
-  listItemSelected: platform === PLATFORM.IOS ? '#289ABB' : '#3F51B5',
+  listItemSelected: platform === PLATFORM.IOS ? '#289ABB' : '#289ABB',
 
   // List
   listBg: 'transparent',
@@ -257,19 +257,19 @@ export default {
 
   // Radio Button
   radioBtnSize: platform === PLATFORM.IOS ? 25 : 23,
-  radioSelectedColorAndroid: '#3F51B5',
+  radioSelectedColorAndroid: '#289ABB',
   radioBtnLineHeight: platform === PLATFORM.IOS ? 29 : 24,
   get radioColor() {
     return this.brandPrimary;
   },
 
   // Segment
-  segmentBackgroundColor: platform === PLATFORM.IOS ? '#F8F8F8' : '#3F51B5',
+  segmentBackgroundColor: platform === PLATFORM.IOS ? '#F8F8F8' : '#289ABB',
   segmentActiveBackgroundColor: platform === PLATFORM.IOS ? '#289ABB' : '#fff',
   segmentTextColor: platform === PLATFORM.IOS ? '#289ABB' : '#fff',
-  segmentActiveTextColor: platform === PLATFORM.IOS ? '#fff' : '#3F51B5',
+  segmentActiveTextColor: platform === PLATFORM.IOS ? '#fff' : '#289ABB',
   segmentBorderColor: platform === PLATFORM.IOS ? '#289ABB' : '#fff',
-  segmentBorderColorMain: platform === PLATFORM.IOS ? '#a7a6ab' : '#3F51B5',
+  segmentBorderColorMain: platform === PLATFORM.IOS ? '#a7a6ab' : '#289ABB',
 
   // Spinner
   defaultSpinnerColor: '#45D56E',
@@ -277,8 +277,8 @@ export default {
 
   // Tab
   tabBarDisabledTextColor: '#BDBDBD',
-  tabDefaultBg: platform === PLATFORM.IOS ? '#F8F8F8' : '#3F51B5',
-  topTabBarTextColor: platform === PLATFORM.IOS ? '#6b6b6b' : '#b3c7f9',
+  tabDefaultBg: platform === PLATFORM.IOS ? '#F8F8F8' : '#289ABB',
+  topTabBarTextColor: platform === PLATFORM.IOS ? '#6b6b6b' : '#96d7e9',
   topTabBarActiveTextColor: platform === PLATFORM.IOS ? '#289ABB' : '#fff',
   topTabBarBorderColor: platform === PLATFORM.IOS ? '#a7a6ab' : '#fff',
   topTabBarActiveBorderColor: platform === PLATFORM.IOS ? '#289ABB' : '#fff',
