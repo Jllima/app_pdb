@@ -8,8 +8,8 @@ const Menu: React.FC = () => {
     <>
       <HeaderApp />
       <Container>
-        <MenuButton iconName="file-text" iconText="Fazer OS" />
-        <MenuButton iconName="search" iconText="Acompanhar OS" />
+        <MenuButton iconName="document-text-outline" iconText="Fazer OS" />
+        <MenuButton iconName="search-outline" iconText="Acompanhar OS" />
       </Container>
     </>
   )

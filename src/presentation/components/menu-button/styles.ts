@@ -1,11 +1,11 @@
 /* eslint-disable prettier/prettier */
 import styled from 'styled-components/native'
 import Colors from '@pdb/presentation/styles/colors'
-import FeatherIcon from 'react-native-vector-icons/Feather'
+import {Icon} from 'native-base'
 
 const Button = styled.TouchableOpacity`
-  paddingHorizontal: 10px;
-  paddingVertical: 27px;
+  paddingHorizontal: 20px;
+  paddingVertical: 20px;
   borderRadius: 5px;
   backgroundColor: ${Colors.primaryColor};
   alignSelf: stretch;
@@ -16,8 +16,10 @@ const Button = styled.TouchableOpacity`
   align-items: center;
 `
 
-const Icon = styled(FeatherIcon)`
+const IconTab = styled(Icon)`
   margin-left: 5px;
+  font-size: 85px;
+  color: #FFFFFF
 `
 
 const Text = styled.Text`
@@ -27,4 +29,4 @@ const Text = styled.Text`
   color: ${Colors.grey}
 `
 
-export {Button, Icon, Text}
+export {Button, IconTab, Text}
