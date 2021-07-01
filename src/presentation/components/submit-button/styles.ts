@@ -6,7 +6,7 @@ import {Icon} from 'native-base'
 
 const Container = styled(RectButton)`
   paddingHorizontal: 20px;
-  paddingVertical: 15px;
+  paddingVertical: 13px;
   borderRadius: 25px;
   backgroundColor: ${Colors.primaryColor};
   alignSelf: stretch;

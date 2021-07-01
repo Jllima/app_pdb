@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react'
-import {Alert} from 'react-native'
+import {Alert, StatusBar} from 'react-native'
 import {Container, Logo} from './styles'
 import {Authentication} from '@pdb/domain/usecases/auth/authentication'
 import {imgLogo} from '@pdb/presentation/assets'
@@ -47,6 +47,7 @@ const SignIn: React.FC<Props> = ({authentication}: Props) => {
 
   return (
     <Container>
+      <StatusBar barStyle="light-content" backgroundColor="#FFFFFF" />
       <Logo source={imgLogo} resizeMode="contain" />
       <Input
         placeholder="Matrícula"

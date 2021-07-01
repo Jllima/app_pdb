@@ -4,7 +4,7 @@ import Colors from '@pdb/presentation/styles/colors'
 
 const TextInput = styled.TextInput`
   paddingHorizontal: 20px;
-  paddingVertical: 15px;
+  paddingVertical: 13px;
   borderRadius: 25px;
   backgroundColor: ${Colors.ligthGrey};
   alignSelf: stretch;
