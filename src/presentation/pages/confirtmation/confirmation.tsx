@@ -4,7 +4,6 @@ import {Container, Logo} from './styles'
 import {imgLogo} from '@pdb/presentation/assets'
 import {SubmitButton, Input} from '@pdb/presentation/components'
 import {RemoteConfirmation} from '@pdb/data/usecases'
-import {useNavigation} from '@react-navigation/native'
 import {AuthContext} from '@pdb/presentation/contexts'
 import {GetMessageError} from '@pdb/domain/errors'
 import {ErrorsModel} from '@pdb/data/models'
@@ -14,7 +13,6 @@ type Props = {
 }
 
 const Confirmation: React.FC<Props> = ({remoteConfirm}: Props) => {
-  const navigation = useNavigation()
   const {updateStateAccount} = useContext(AuthContext)
   const [state, setState] = useState({
     password: '',
@@ -34,7 +32,6 @@ const Confirmation: React.FC<Props> = ({remoteConfirm}: Props) => {
       })
       setState({...state, isLoading: false})
       updateStateAccount(response.data)
-      navigation.navigate('ConfirmOrMenu')
     } catch (error) {
       const errorObject = error as GetMessageError
       setState({...state, isLoading: false})
