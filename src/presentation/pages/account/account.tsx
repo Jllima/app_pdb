@@ -1,8 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {Header, Body, Title} from 'native-base'
 import {Container, ButtonText, IconNb} from './styles'
+import {AuthContext} from '@pdb/presentation/contexts'
 
 const Account: React.FC = () => {
+  const {signOut} = useContext(AuthContext)
+
   return (
     <>
       <Header>
@@ -10,7 +13,7 @@ const Account: React.FC = () => {
           <Title>MINHA CONTA</Title>
         </Body>
       </Header>
-      <Container>
+      <Container onPress={signOut}>
         <ButtonText>Sair</ButtonText>
         <IconNb name="log-out-outline" />
       </Container>

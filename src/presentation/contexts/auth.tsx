@@ -2,11 +2,11 @@ import React, {createContext, useState} from 'react'
 import AsyncStorage from '@react-native-community/async-storage'
 import jwtDecode from 'jwt-decode'
 import {UserModel} from '@pdb/domain/models/user-model'
-
 interface AuthContextData {
   token: string
   user: UserModel
   saveAccount: (accesaToken: string) => Promise<void>
+  signOut: () => Promise<void>
   updateStateAccount: (user: UserModel) => void
 }
 
@@ -26,7 +26,6 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 
 export const AuthProvider: React.FC = ({children}) => {
   const [data, setData] = useState<StateData>({} as StateData)
-
   const saveAccount = async (accessToken: any): Promise<void> => {
     try {
       // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -64,11 +63,18 @@ export const AuthProvider: React.FC = ({children}) => {
     })
   }
 
+  const signOut = async (): Promise<void> => {
+    await AsyncStorage.multiRemove(['@pdb:access_token', '@pdb:user_name'])
+
+    setData({...data, accessToken: ''})
+  }
+
   return (
     <AuthContext.Provider
       value={{
         token: data.accessToken,
         saveAccount,
+        signOut,
         updateStateAccount,
         user: data.user,
       }}>
