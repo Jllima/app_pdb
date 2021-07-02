@@ -18,7 +18,7 @@ const SubmitButton: React.FC<ButtonProps> = ({
   return (
     <Container {...rest}>
       {loading ? (
-        <ActivityIndicator color="#FFFFFF" />
+        <ActivityIndicator color="#FFFFFF" size={25} />
       ) : (
         <>
           <ButtonText>{children}</ButtonText>
