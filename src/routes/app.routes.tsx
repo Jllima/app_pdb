@@ -1,21 +1,12 @@
 import React from 'react'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import {Menu, Account} from '@pdb/presentation/pages'
+import {Menu, Account, MakeOs} from '@pdb/presentation/pages'
 import {Header, Body, Title} from 'native-base'
 import {TabBottomNavigation} from '@pdb/presentation/components'
 import {HOME, MAKEOS, OS, SETTINGS} from '@pdb/constants'
 
 const Tab = createBottomTabNavigator()
 
-const MakeOs: React.FC = () => {
-  return (
-    <Header>
-      <Body>
-        <Title>FAZER OS</Title>
-      </Body>
-    </Header>
-  )
-}
 const SearchOs: React.FC = () => {
   return (
     <Header>
