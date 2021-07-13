@@ -1,7 +1,7 @@
 export type OrderModel = {
   id: number
   km: number
-  car_number: string
+  car_number: number
   problem: string
   state: string
   status: string
