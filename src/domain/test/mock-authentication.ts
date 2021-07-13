@@ -7,7 +7,7 @@ export const mockAccountModel = (): AccountModel => ({
 })
 
 export const mockAuthenticationParams = (): AuthParams => ({
-  identity: faker.internet.email(),
+  username: faker.internet.email(),
   password: faker.internet.password(),
 })
 

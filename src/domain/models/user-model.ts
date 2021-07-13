@@ -1,7 +1,7 @@
 export type UserModel = {
   id: string
   confirmation?: boolean
-  identity?: string
+  username?: string
   name: string
 }
 
