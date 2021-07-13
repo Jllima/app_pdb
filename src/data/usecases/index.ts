@@ -1,3 +1,6 @@
 export * from './authentication/remote-auth'
 export * from './confirm/remote-confirmation'
 export * from './problems/remote-get-problems-and-vehicles'
+export * from './create-order/remote-create-order'
+export * from './get-order/remote-get-order'
+export * from './get-orders/remote-get-orders'
