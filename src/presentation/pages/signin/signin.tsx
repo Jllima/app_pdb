@@ -1,11 +1,12 @@
 import React, {useState, useContext} from 'react'
 import {Alert, StatusBar} from 'react-native'
-import {Container, Logo} from './styles'
+import {Container, Logo, ContainerResetPwd} from './styles'
 import {Authentication} from '@pdb/domain/usecases/auth/authentication'
 import {imgLogo} from '@pdb/presentation/assets'
 import {AuthContext} from '@pdb/presentation/contexts'
 import {useNavigation} from '@react-navigation/native'
 import {Input, SubmitButton} from '@pdb/presentation/components'
+import {Button, Text} from 'native-base'
 
 type Props = {
   authentication: Authentication
@@ -45,6 +46,17 @@ const SignIn: React.FC<Props> = ({authentication}: Props) => {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const resetPwdDialog = () =>
+    Alert.alert(
+      'Aviso!',
+      'Entre em contato com o setor de RH da sua empresa para solicitar o reset de senha.',
+      [{text: 'OK'}],
+      {
+        cancelable: true,
+      },
+    )
+
   return (
     <Container>
       <StatusBar barStyle="light-content" backgroundColor="#FFFFFF" />
@@ -69,6 +81,11 @@ const SignIn: React.FC<Props> = ({authentication}: Props) => {
         iconName="log-in-outline">
         Entrar
       </SubmitButton>
+      <ContainerResetPwd>
+        <Button transparent onPress={resetPwdDialog}>
+          <Text>Esqueceu a senha?</Text>
+        </Button>
+      </ContainerResetPwd>
     </Container>
   )
 }
