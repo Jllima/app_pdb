@@ -12,5 +12,8 @@ const Logo = styled.Image`
   height: 25%;
   marginBottom: 40px;
 `
+const ContainerResetPwd = styled.View`
+  marginTop: 50px;
+`
 
-export {Container, Logo}
+export {Container, Logo, ContainerResetPwd}
