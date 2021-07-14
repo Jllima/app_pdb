@@ -16,9 +16,15 @@ import {Icon} from 'native-base'
 interface ButtonProps extends RectButtonProperties {
   txt: string
   options: any
+  onChangeValue: Function
 }
 
-const Select: React.FC<ButtonProps> = ({options, txt, ...rest}) => {
+const Select: React.FC<ButtonProps> = ({
+  options,
+  onChangeValue,
+  txt,
+  ...rest
+}) => {
   const [state, setState] = useState({
     text: txt,
     modalVisible: false,
@@ -26,18 +32,21 @@ const Select: React.FC<ButtonProps> = ({options, txt, ...rest}) => {
     isSelected: '',
   })
 
+  const handleOptions = (item: any): void => {
+    setState({
+      ...state,
+      text: item.description,
+      modalVisible: false,
+      isSelected: item.id,
+    })
+    onChangeValue(item.id)
+  }
+
   const renderOptions = (item: any): any => {
     return (
       <ElementOption
         isFocused={state.isFocused}
-        onPress={() => {
-          setState({
-            ...state,
-            text: item.description,
-            modalVisible: false,
-            isSelected: item.id,
-          })
-        }}>
+        onPress={() => handleOptions(item)}>
         <ElementText>{item.description}</ElementText>
       </ElementOption>
     )

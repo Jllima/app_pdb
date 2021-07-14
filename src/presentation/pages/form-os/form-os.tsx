@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {SafeAreaView} from 'react-native'
+import {View} from 'react-native'
 import {Select} from '@pdb/presentation/components'
 
 const FormOS: React.FC = () => {
@@ -30,10 +30,18 @@ const FormOS: React.FC = () => {
     },
   ])
 
+  const onChangeValue = (id: string): void => {
+    console.log(id)
+  }
+
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <Select options={list} txt="Selecione o problema" />
-    </SafeAreaView>
+    <View>
+      <Select
+        options={list}
+        txt="Selecione o problema"
+        onChangeValue={onChangeValue}
+      />
+    </View>
   )
 }
 
