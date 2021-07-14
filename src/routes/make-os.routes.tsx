@@ -1,6 +1,6 @@
 import React from 'react'
 import {createStackNavigator} from '@react-navigation/stack'
-import {MakeOs} from '@pdb/presentation/pages'
+import {MakeOs, ShowOs} from '@pdb/presentation/pages'
 import {CreateFormOsPage} from '@pdb/main/factories'
 
 const MakeOsStack = createStackNavigator()
@@ -14,6 +14,7 @@ const MakeOsRoutes: React.FC = () => {
         options={{headerShown: false}}
       />
       <MakeOsStack.Screen name="FormOs" component={CreateFormOsPage} />
+      <MakeOsStack.Screen name="ShowOs" component={ShowOs} />
     </MakeOsStack.Navigator>
   )
 }

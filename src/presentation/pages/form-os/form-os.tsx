@@ -5,6 +5,7 @@ import {Select, SubmitButton} from '@pdb/presentation/components'
 import {RemoteCreateOs, RemoteGetProblemsAndVehicles} from '@pdb/data/usecases'
 import {ProblemModel} from '@pdb/domain/models/problem-model'
 import {VehicleModel} from '@pdb/domain/models/vehicle-model'
+import {useNavigation} from '@react-navigation/native'
 
 type Props = {
   remoteCreateOs: RemoteCreateOs
@@ -20,6 +21,8 @@ const FormOS: React.FC<Props> = ({
   remoteCreateOs,
   remoteGetProblemsAndVehicles,
 }: Props) => {
+  const navigation = useNavigation()
+
   const [state, setState] = useState<StateData>({
     problemOptions: [],
     vehicleOptions: [],
@@ -56,10 +59,9 @@ const FormOS: React.FC<Props> = ({
     bodyFormData.append('data[problem_id]', formData['data[problem_id]'])
     bodyFormData.append('data[vehicle_id]', formData['data[vehicle_id]'])
     bodyFormData.append('data[status_id]', formData['data[status_id]'])
-
     try {
       const response = await remoteCreateOs.create(bodyFormData)
-      console.log(response)
+      navigation.navigate('ShowOs', {osId: response.data.id})
     } catch (error: any) {
       const messageError: string = error.message
       setFormData({
