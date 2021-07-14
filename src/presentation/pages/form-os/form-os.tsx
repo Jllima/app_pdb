@@ -27,9 +27,9 @@ const FormOS: React.FC<Props> = ({
 
   const [formData, setFormData] = useState({
     'data[km]': 234,
-    'data[problem_id]': 1,
-    'data[vehicle_id]': 1,
-    'data[status_id]': 1,
+    'data[problem_id]': '',
+    'data[vehicle_id]': '',
+    'data[status_id]': '1',
     isLoading: false,
     errorMessage: '',
     enableButton: true,
@@ -40,7 +40,6 @@ const FormOS: React.FC<Props> = ({
       const response = await remoteGetProblemsAndVehicles.get()
       const {problems, vehicles} = response
       setState({...state, problemOptions: problems, vehicleOptions: vehicles})
-      console.log(response)
     } catch (error: any) {
       Alert.alert(error.message)
     }
@@ -49,10 +48,6 @@ const FormOS: React.FC<Props> = ({
   useEffect(() => {
     loadOptions()
   }, [])
-
-  const onChangeValue = (id: string): void => {
-    console.log(id)
-  }
 
   const handleSubmit = async (): Promise<void> => {
     // setFormData({...formData, isLoading: true, enableButton: false})
@@ -77,17 +72,22 @@ const FormOS: React.FC<Props> = ({
     }
   }
 
+  const onChangeValueVehicle = (id: string): void =>
+    setFormData({...formData, 'data[vehicle_id]': id})
+  const onChangeValueProblem = (id: string): void =>
+    setFormData({...formData, 'data[problem_id]': id})
+
   return (
     <View>
       <Select
         options={state.vehicleOptions}
         txt="Selecione o número do carro"
-        onChangeValue={onChangeValue}
+        onChangeValue={onChangeValueVehicle}
       />
       <Select
         options={state.problemOptions}
         txt="Selecione o problema"
-        onChangeValue={onChangeValue}
+        onChangeValue={onChangeValueProblem}
       />
       <SubmitButton
         onPress={handleSubmit}
