@@ -10,9 +10,7 @@ export class RemoteGetProblemsAndVehicles implements GetProblemsAndVehicles {
     private readonly httpClient: HttpClient,
   ) {}
 
-  async get(): Promise<
-    ProblemsCategoriesAndVehiclesModel | ErrorsDetailsModel
-  > {
+  async get(): Promise<ProblemsCategoriesAndVehiclesModel> {
     const httpResponse = await this.httpClient.request({
       url: this.url,
       method: 'get',

@@ -28,6 +28,7 @@ module.exports = {
       },
     ],
     semi: ['error', 'never'],
+    "@typescript-eslint/react-hooks/exhaustive-dep": "off",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
     '@typescript-eslint/consistent-type-definitions': 'off',

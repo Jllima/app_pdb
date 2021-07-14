@@ -5,6 +5,7 @@ export class AuthorizeHttpClientDecorator implements HttpClient {
   constructor(
     private readonly getStorage: GetStorage,
     private readonly httpClient: HttpClient,
+    private readonly contentType: string = 'application/json',
   ) {}
 
   async request(data: HttpRequest): Promise<HttpResponse> {
@@ -13,6 +14,7 @@ export class AuthorizeHttpClientDecorator implements HttpClient {
       Object.assign(data, {
         headers: Object.assign(data.headers || {}, {
           Authorization: accessToken,
+          'Content-Type': this.contentType,
         }),
       })
     }

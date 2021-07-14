@@ -62,6 +62,7 @@ describe('AuthorizeHttpGetClientDecorator', () => {
     expect(httpClientSpy.method).toBe(httpRequest.method)
     expect(httpClientSpy.headers).toEqual({
       Authorization: getStorageSpy.value,
+      'Content-Type': 'application/json',
     })
   })
 
@@ -74,6 +75,7 @@ describe('AuthorizeHttpGetClientDecorator', () => {
       method: faker.random.arrayElement(['get', 'post', 'put', 'delete']),
       headers: {
         field,
+        'Content-Type': 'application/json',
       },
     }
 
@@ -84,6 +86,7 @@ describe('AuthorizeHttpGetClientDecorator', () => {
     expect(httpClientSpy.headers).toEqual({
       field,
       Authorization: getStorageSpy.value,
+      'Content-Type': 'application/json',
     })
   })
 
