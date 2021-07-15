@@ -6,6 +6,7 @@ import {
   SubmitButton,
   Input,
   HeaderStack,
+  PhotoButton,
 } from '@pdb/presentation/components'
 import {RemoteCreateOs, RemoteGetProblemsAndVehicles} from '@pdb/data/usecases'
 import {ProblemModel} from '@pdb/domain/models/problem-model'
@@ -118,11 +119,12 @@ const FormOS: React.FC<Props> = ({
           txt="Informe o problema"
           onChangeValue={onChangeValueProblem}
         />
+        <PhotoButton iconName="camera-outline">Foto</PhotoButton>
         <SubmitButton
           onPress={handleSubmit}
           loading={formData.isLoading}
           enabled={formData.enableButton}
-          iconName="log-in-outline">
+          iconName="save-outline">
           Salvar
         </SubmitButton>
       </Container>
