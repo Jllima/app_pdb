@@ -1,4 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable @typescript-eslint/no-var-requires */
 export const imgLogo = require('./img/logo.png')
 export const imgCarroceria = require('./img/carroceria.jpeg')
 export const imgEletrica = require('./img/eletrica.jpeg')
