@@ -22,6 +22,7 @@ const Container = styled(RectButton)`
   flexDirection: row;
   justify-content: space-between;
   align-items: center;
+  marginBottom: 25px;
 `
 
 const ButtonText = styled.Text`

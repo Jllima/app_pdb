@@ -13,7 +13,13 @@ const MakeOsRoutes: React.FC = () => {
         component={MakeOs}
         options={{headerShown: false}}
       />
-      <MakeOsStack.Screen name="FormOs" component={CreateFormOsPage} />
+      <MakeOsStack.Screen
+        name="FormOs"
+        component={CreateFormOsPage}
+        options={{
+          headerShown: false,
+        }}
+      />
       <MakeOsStack.Screen name="ShowOs" component={ShowOs} />
     </MakeOsStack.Navigator>
   )

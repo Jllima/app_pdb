@@ -5,3 +5,4 @@ export {default as TabBottomNavigation} from './tab-bottom-navigation/tab-bottom
 export {default as HeaderApp} from './header-app/header-app'
 export {default as MakeOsMenuButton} from './make-os-menu-button/make-os-menu-button'
 export {default as Select} from './select/select'
+export {default as HeaderStack} from './header-stack/header-stack'

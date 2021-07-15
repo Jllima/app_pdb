@@ -1,10 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useState, useEffect} from 'react'
-import {View, Alert} from 'react-native'
-import {Select, SubmitButton} from '@pdb/presentation/components'
+import React, {useState, useEffect, useContext} from 'react'
+import {Alert} from 'react-native'
+import {
+  Select,
+  SubmitButton,
+  Input,
+  HeaderStack,
+} from '@pdb/presentation/components'
 import {RemoteCreateOs, RemoteGetProblemsAndVehicles} from '@pdb/data/usecases'
 import {ProblemModel} from '@pdb/domain/models/problem-model'
 import {VehicleModel} from '@pdb/domain/models/vehicle-model'
+import {Container, TextName, TextTime} from './styles'
+import {AuthContext} from '@pdb/presentation/contexts'
+
 import {useNavigation} from '@react-navigation/native'
 
 type Props = {
@@ -22,6 +30,7 @@ const FormOS: React.FC<Props> = ({
   remoteGetProblemsAndVehicles,
 }: Props) => {
   const navigation = useNavigation()
+  const {user} = useContext(AuthContext)
 
   const [state, setState] = useState<StateData>({
     problemOptions: [],
@@ -29,7 +38,7 @@ const FormOS: React.FC<Props> = ({
   })
 
   const [formData, setFormData] = useState({
-    'data[km]': 234,
+    'data[km]': '',
     'data[problem_id]': '',
     'data[vehicle_id]': '',
     'data[status_id]': '1',
@@ -53,7 +62,7 @@ const FormOS: React.FC<Props> = ({
   }, [])
 
   const handleSubmit = async (): Promise<void> => {
-    // setFormData({...formData, isLoading: true, enableButton: false})
+    setFormData({...formData, isLoading: true, enableButton: false})
     const bodyFormData = new FormData()
     bodyFormData.append('data[km]', formData['data[km]'])
     bodyFormData.append('data[problem_id]', formData['data[problem_id]'])
@@ -61,6 +70,7 @@ const FormOS: React.FC<Props> = ({
     bodyFormData.append('data[status_id]', formData['data[status_id]'])
     try {
       const response = await remoteCreateOs.create(bodyFormData)
+      console.log(response)
       navigation.navigate('ShowOs', {osId: response.data.id})
     } catch (error: any) {
       const messageError: string = error.message
@@ -79,26 +89,44 @@ const FormOS: React.FC<Props> = ({
   const onChangeValueProblem = (id: string): void =>
     setFormData({...formData, 'data[problem_id]': id})
 
+  const today = new Date()
+
+  const date = `Data: ${today.getDate()}/${
+    today.getMonth() + 1
+  }/${today.getFullYear()}`
+
   return (
-    <View>
-      <Select
-        options={state.vehicleOptions}
-        txt="Selecione o número do carro"
-        onChangeValue={onChangeValueVehicle}
-      />
-      <Select
-        options={state.problemOptions}
-        txt="Selecione o problema"
-        onChangeValue={onChangeValueProblem}
-      />
-      <SubmitButton
-        onPress={handleSubmit}
-        loading={formData.isLoading}
-        enabled={formData.enableButton}
-        iconName="log-in-outline">
-        Entrar
-      </SubmitButton>
-    </View>
+    <>
+      <HeaderStack title="Formulário Os" />
+      <Container>
+        <TextName>Motorista: {user.name}</TextName>
+        <TextTime>{date}</TextTime>
+        <Input
+          keyboardType="numeric"
+          placeholder="KM"
+          autoCorrect={false}
+          autoCapitalize="none"
+          onChangeText={text => setFormData({...formData, 'data[km]': text})}
+        />
+        <Select
+          options={state.vehicleOptions}
+          txt="Informe o número do veículo"
+          onChangeValue={onChangeValueVehicle}
+        />
+        <Select
+          options={state.problemOptions}
+          txt="Informe o problema"
+          onChangeValue={onChangeValueProblem}
+        />
+        <SubmitButton
+          onPress={handleSubmit}
+          loading={formData.isLoading}
+          enabled={formData.enableButton}
+          iconName="log-in-outline">
+          Salvar
+        </SubmitButton>
+      </Container>
+    </>
   )
 }
 
