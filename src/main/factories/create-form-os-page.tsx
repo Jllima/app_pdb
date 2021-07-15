@@ -7,6 +7,7 @@ import {AxiosHttpClient} from '@pdb/infra/http'
 import {AsyncStorageAdapter} from '@pdb/infra/cache'
 import {HttpClient} from '@pdb/domain/protocols/http'
 import {NavigatorScreenParams} from '@react-navigation/native'
+import {UplaodPovider} from '@pdb/presentation/contexts/upload'
 
 const makeAuthHttpClient: HttpClient = new AuthorizeHttpClientDecorator(
   new AsyncStorageAdapter(),
@@ -24,7 +25,6 @@ const remoteGetProblemsAndVehicles = (
   id: string,
 ): RemoteGetProblemsAndVehicles => {
   const authHttpClient = makeAuthHttpClient
-  console.log(id)
 
   return new RemoteGetProblemsAndVehicles(
     `${basUrl as string}/categories/${id}/problems`,
@@ -44,9 +44,11 @@ export const CreateFormOsPage: React.FC<Params> = ({route}: Params) => {
   const {categoryId} = route.params
 
   return (
-    <FormOs
-      remoteCreateOs={remoteCreateOs()}
-      remoteGetProblemsAndVehicles={remoteGetProblemsAndVehicles(categoryId)}
-    />
+    <UplaodPovider>
+      <FormOs
+        remoteCreateOs={remoteCreateOs()}
+        remoteGetProblemsAndVehicles={remoteGetProblemsAndVehicles(categoryId)}
+      />
+    </UplaodPovider>
   )
 }

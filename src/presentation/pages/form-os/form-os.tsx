@@ -1,19 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect, useContext} from 'react'
-import {Alert, Platform, Image, ScrollView} from 'react-native'
+import {Alert, Platform, ScrollView} from 'react-native'
 import {
   Select,
   SubmitButton,
   Input,
   HeaderStack,
-  PhotoButton,
+  UploadPhoto,
 } from '@pdb/presentation/components'
 import {RemoteCreateOs, RemoteGetProblemsAndVehicles} from '@pdb/data/usecases'
 import {ProblemModel} from '@pdb/domain/models/problem-model'
 import {VehicleModel} from '@pdb/domain/models/vehicle-model'
 import {Container, TextName, TextTime} from './styles'
-import {AuthContext} from '@pdb/presentation/contexts'
-import {launchImageLibrary} from 'react-native-image-picker'
+import {AuthContext, UploadContext} from '@pdb/presentation/contexts'
+import {dateCurrent} from '@pdb/services'
 
 import {useNavigation} from '@react-navigation/native'
 
@@ -32,13 +32,14 @@ const FormOS: React.FC<Props> = ({
   remoteGetProblemsAndVehicles,
 }: Props) => {
   const navigation = useNavigation()
+  const {photoImage} = useContext(UploadContext)
   const {user} = useContext(AuthContext)
 
   const [state, setState] = useState<StateData>({
     problemOptions: [],
     vehicleOptions: [],
   })
-  const [photo, setPhoto] = useState(null)
+
   const [formData, setFormData] = useState({
     'data[km]': '',
     'data[problem_id]': '',
@@ -59,32 +60,29 @@ const FormOS: React.FC<Props> = ({
     }
   }
 
-  const createFormData = (body = {}): FormData => {
+  const createFormData = (body: any = {}): FormData => {
     const data = new FormData()
     data.append('data[km]', formData['data[km]'])
     data.append('data[problem_id]', formData['data[problem_id]'])
     data.append('data[vehicle_id]', formData['data[vehicle_id]'])
     data.append('data[status_id]', formData['data[status_id]'])
 
-    data.append('data[image]', {
-      name: photo.fileName,
-      type: photo.type,
-      uri: Platform.OS === 'ios' ? photo.uri.replace('file://', '') : photo.uri,
-    })
+    if (photoImage) {
+      data.append('data[image]', {
+        name: photoImage.fileName,
+        type: photoImage.type,
+        uri:
+          Platform.OS === 'ios'
+            ? photoImage.uri.replace('file://', '')
+            : photoImage.uri,
+      })
 
-    Object.keys(body).forEach(key => {
-      data.append(key, body[key])
-    })
+      Object.keys(body).forEach(key => {
+        data.append(key, body[key])
+      })
+    }
 
     return data
-  }
-
-  const handleChoosePhoto = (): void => {
-    launchImageLibrary({noData: true}, response => {
-      if (response) {
-        setPhoto(response.assets[0])
-      }
-    })
   }
 
   useEffect(() => {
@@ -114,19 +112,13 @@ const FormOS: React.FC<Props> = ({
   const onChangeValueProblem = (id: string): void =>
     setFormData({...formData, 'data[problem_id]': id})
 
-  const today = new Date()
-
-  const date = `Data: ${today.getDate()}/${
-    today.getMonth() + 1
-  }/${today.getFullYear()}`
-
   return (
     <>
       <HeaderStack title="Formulário Os" />
       <Container>
         <ScrollView>
           <TextName>Motorista: {user.name}</TextName>
-          <TextTime>{date}</TextTime>
+          <TextTime>{dateCurrent}</TextTime>
           <Input
             keyboardType="numeric"
             placeholder="KM"
@@ -144,15 +136,7 @@ const FormOS: React.FC<Props> = ({
             txt="Informe o problema"
             onChangeValue={onChangeValueProblem}
           />
-          {photo && (
-            <Image
-              source={{uri: photo.uri}}
-              style={{width: 300, height: 300}}
-            />
-          )}
-          <PhotoButton iconName="camera-outline" onPress={handleChoosePhoto}>
-            Foto
-          </PhotoButton>
+          <UploadPhoto />
           <SubmitButton
             onPress={handleSubmit}
             loading={formData.isLoading}
