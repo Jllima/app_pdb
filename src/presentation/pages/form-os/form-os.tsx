@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect, useContext} from 'react'
-import {Alert} from 'react-native'
+import {Alert, Platform, Image, ScrollView} from 'react-native'
 import {
   Select,
   SubmitButton,
@@ -13,6 +13,7 @@ import {ProblemModel} from '@pdb/domain/models/problem-model'
 import {VehicleModel} from '@pdb/domain/models/vehicle-model'
 import {Container, TextName, TextTime} from './styles'
 import {AuthContext} from '@pdb/presentation/contexts'
+import {launchImageLibrary} from 'react-native-image-picker'
 
 import {useNavigation} from '@react-navigation/native'
 
@@ -37,7 +38,7 @@ const FormOS: React.FC<Props> = ({
     problemOptions: [],
     vehicleOptions: [],
   })
-
+  const [photo, setPhoto] = useState(null)
   const [formData, setFormData] = useState({
     'data[km]': '',
     'data[problem_id]': '',
@@ -58,20 +59,43 @@ const FormOS: React.FC<Props> = ({
     }
   }
 
+  const createFormData = (body = {}): FormData => {
+    const data = new FormData()
+    data.append('data[km]', formData['data[km]'])
+    data.append('data[problem_id]', formData['data[problem_id]'])
+    data.append('data[vehicle_id]', formData['data[vehicle_id]'])
+    data.append('data[status_id]', formData['data[status_id]'])
+
+    data.append('data[image]', {
+      name: photo.fileName,
+      type: photo.type,
+      uri: Platform.OS === 'ios' ? photo.uri.replace('file://', '') : photo.uri,
+    })
+
+    Object.keys(body).forEach(key => {
+      data.append(key, body[key])
+    })
+
+    return data
+  }
+
+  const handleChoosePhoto = (): void => {
+    launchImageLibrary({noData: true}, response => {
+      if (response) {
+        setPhoto(response.assets[0])
+      }
+    })
+  }
+
   useEffect(() => {
     loadOptions()
   }, [])
 
   const handleSubmit = async (): Promise<void> => {
     setFormData({...formData, isLoading: true, enableButton: false})
-    const bodyFormData = new FormData()
-    bodyFormData.append('data[km]', formData['data[km]'])
-    bodyFormData.append('data[problem_id]', formData['data[problem_id]'])
-    bodyFormData.append('data[vehicle_id]', formData['data[vehicle_id]'])
-    bodyFormData.append('data[status_id]', formData['data[status_id]'])
+
     try {
-      const response = await remoteCreateOs.create(bodyFormData)
-      console.log(response)
+      const response = await remoteCreateOs.create(createFormData())
       navigation.navigate('ShowOs', {osId: response.data.id})
     } catch (error: any) {
       const messageError: string = error.message
@@ -100,33 +124,43 @@ const FormOS: React.FC<Props> = ({
     <>
       <HeaderStack title="Formulário Os" />
       <Container>
-        <TextName>Motorista: {user.name}</TextName>
-        <TextTime>{date}</TextTime>
-        <Input
-          keyboardType="numeric"
-          placeholder="KM"
-          autoCorrect={false}
-          autoCapitalize="none"
-          onChangeText={text => setFormData({...formData, 'data[km]': text})}
-        />
-        <Select
-          options={state.vehicleOptions}
-          txt="Informe o número do veículo"
-          onChangeValue={onChangeValueVehicle}
-        />
-        <Select
-          options={state.problemOptions}
-          txt="Informe o problema"
-          onChangeValue={onChangeValueProblem}
-        />
-        <PhotoButton iconName="camera-outline">Foto</PhotoButton>
-        <SubmitButton
-          onPress={handleSubmit}
-          loading={formData.isLoading}
-          enabled={formData.enableButton}
-          iconName="save-outline">
-          Salvar
-        </SubmitButton>
+        <ScrollView>
+          <TextName>Motorista: {user.name}</TextName>
+          <TextTime>{date}</TextTime>
+          <Input
+            keyboardType="numeric"
+            placeholder="KM"
+            autoCorrect={false}
+            autoCapitalize="none"
+            onChangeText={text => setFormData({...formData, 'data[km]': text})}
+          />
+          <Select
+            options={state.vehicleOptions}
+            txt="Informe o número do veículo"
+            onChangeValue={onChangeValueVehicle}
+          />
+          <Select
+            options={state.problemOptions}
+            txt="Informe o problema"
+            onChangeValue={onChangeValueProblem}
+          />
+          {photo && (
+            <Image
+              source={{uri: photo.uri}}
+              style={{width: 300, height: 300}}
+            />
+          )}
+          <PhotoButton iconName="camera-outline" onPress={handleChoosePhoto}>
+            Foto
+          </PhotoButton>
+          <SubmitButton
+            onPress={handleSubmit}
+            loading={formData.isLoading}
+            enabled={formData.enableButton}
+            iconName="save-outline">
+            Salvar
+          </SubmitButton>
+        </ScrollView>
       </Container>
     </>
   )

@@ -4,8 +4,9 @@ import Colors from '@pdb/presentation/styles/colors'
 
 const Container = styled.View`
   flex: 1;
-  padding-top: 30px
+  padding-top: 30px;
   backgroundColor: ${Colors.write};
+  paddingBottom: 30px;
 ` 
 
 const TextName = styled.Text`
