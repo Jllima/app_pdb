@@ -9,7 +9,7 @@ const ImagePhoto = styled.Image`
   marginTop: 10px;
   width: 340; 
   height: 300;
-  borderWidth: 5;
+  borderWidth: 5px;
   borderColor: ${Colors.ligthGrey};
 `
 

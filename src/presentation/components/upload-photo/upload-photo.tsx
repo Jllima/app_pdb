@@ -1,14 +1,17 @@
 import React, {useContext} from 'react'
 import {UploadContext} from '@pdb/presentation/contexts'
-import {PhotoButton} from '@pdb/presentation/components'
+import {PhotoButton, Spinner} from '@pdb/presentation/components'
 import {ImagePhoto} from './styles'
 
 const UploadPhoto: React.FC = () => {
-  const {photoImage, chooseUpload} = useContext(UploadContext)
+  const {photoImage, chooseUpload, isLoading} = useContext(UploadContext)
 
   return (
     <>
-      {photoImage && <ImagePhoto source={{uri: photoImage.uri}} />}
+      {isLoading && <Spinner />}
+      {photoImage && !isLoading && (
+        <ImagePhoto source={{uri: photoImage.uri}} />
+      )}
       <PhotoButton iconName="camera-outline" onPress={chooseUpload}>
         Foto
       </PhotoButton>
