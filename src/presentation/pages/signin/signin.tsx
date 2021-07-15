@@ -50,7 +50,7 @@ const SignIn: React.FC<Props> = ({authentication}: Props) => {
   const resetPwdDialog = () =>
     Alert.alert(
       'Aviso!',
-      'Entre em contato com o setor de RH da sua empresa para solicitar o reset de senha.',
+      'Entre em contato com o setor de RH da sua empresa para solicitar nova senha.',
       [{text: 'OK'}],
       {
         cancelable: true,
