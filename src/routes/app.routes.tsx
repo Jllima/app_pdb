@@ -9,7 +9,9 @@ const Tab = createBottomTabNavigator()
 
 const AppRoutes: React.FC = () => {
   return (
-    <Tab.Navigator tabBar={props => <TabBottomNavigation {...props} />}>
+    <Tab.Navigator
+      initialRouteName="Menu"
+      tabBar={props => <TabBottomNavigation {...props} />}>
       <Tab.Screen name="Menu" component={Menu} options={{title: HOME}} />
       <Tab.Screen
         name="MakeOsRoutes"
