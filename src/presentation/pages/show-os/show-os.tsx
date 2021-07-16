@@ -13,8 +13,13 @@ import {
 } from 'native-base'
 import {imgLogo} from '@pdb/presentation/assets'
 import {Styles} from './styles'
+import {GetOrder} from '@pdb/domain/usecases/orders/get-order'
 
-const ShowOS: React.FC = () => {
+type Props = {
+  getOrder: GetOrder
+}
+
+const ShowOS: React.FC<Props> = () => {
   return (
     <>
       <HeaderApp title="Visualizar OS" />

@@ -1,11 +1,12 @@
 export type OrderModel = {
   id: number
-  km: number
-  car_number: number
+  car_number: string
+  category_id: number
+  category_name: string
+  created_at: string
   problem: string
-  state: string
+  reference: string
   status: string
-  description: string
 }
 
 export type OrderDataModel = {
@@ -18,4 +19,12 @@ export type OrderDataModel = {
   }
 }
 
-export type OrdersModel = OrderModel[]
+export type OrderListModel = {
+  id: number
+  category_id: number
+  created_at: string
+  reference: string
+  status: string
+}
+
+export type OrdersModel = OrderListModel[]
