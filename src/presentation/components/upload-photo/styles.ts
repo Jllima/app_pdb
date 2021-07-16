@@ -7,8 +7,8 @@ const ImagePhoto = styled.Image`
   backgroundColor: ${Colors.primaryColor};
   marginHorizontal: 25px;
   marginTop: 10px;
-  width: 340; 
-  height: 300;
+  width: 340px; 
+  height: 300px;
   borderWidth: 5px;
   borderColor: ${Colors.ligthGrey};
 `

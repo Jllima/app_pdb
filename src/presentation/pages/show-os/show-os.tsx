@@ -65,7 +65,11 @@ const ShowOS: React.FC<Props> = ({getOrder}: Props) => {
                 </CardItem>
                 <CardItem cardBody>
                   <Image
-                    source={{uri: order.meta.links.image_url}}
+                    source={
+                      order.meta.links.image_url
+                        ? {uri: order.meta.links.image_url}
+                        : imgLogo
+                    }
                     style={Styles.imageTitle}
                   />
                 </CardItem>
