@@ -17,7 +17,7 @@ const SignIn: React.FC<Props> = ({authentication}: Props) => {
   const {saveAccount} = useContext(AuthContext)
 
   const [state, setState] = useState({
-    identity: '',
+    username: '',
     password: '',
     isLoading: false,
     errorMessage: '',
@@ -25,11 +25,11 @@ const SignIn: React.FC<Props> = ({authentication}: Props) => {
   })
 
   const handleSignIn = async (): Promise<void> => {
-    const {identity, password} = state
+    const {username, password} = state
     setState({...state, isLoading: true, enableButton: false})
     try {
       const response = await authentication.auth({
-        identity: identity,
+        username: username,
         password: password,
       })
       await saveAccount(response.auth_token)
@@ -65,7 +65,7 @@ const SignIn: React.FC<Props> = ({authentication}: Props) => {
         placeholder="Matrícula"
         autoCorrect={false}
         autoCapitalize="none"
-        onChangeText={text => setState({...state, identity: text})}
+        onChangeText={text => setState({...state, username: text})}
       />
       <Input
         placeholder="Senha"

@@ -6,7 +6,7 @@ export const mockUserDataModel = (): UserDataModel => ({
   data: {
     id: '1',
     confirmation: true,
-    identity: 'user_1',
+    username: 'user_1',
     name: 'Usuário 1',
   },
 })

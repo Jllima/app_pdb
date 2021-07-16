@@ -8,8 +8,14 @@ import {
   imgSuspensao,
 } from '@pdb/presentation/assets'
 import {Header, Body, Title} from 'native-base'
+import {useNavigation} from '@react-navigation/native'
 
 const MakeOs: React.FC = () => {
+  const navigation = useNavigation()
+
+  const navigateToForm = (id: string): void =>
+    navigation.navigate('FormOs', {categoryId: id})
+
   return (
     <>
       <Header>
@@ -18,10 +24,26 @@ const MakeOs: React.FC = () => {
         </Body>
       </Header>
       <Container>
-        <MakeOsMenuButton path={imgCarroceria} buttonText="Carroceria" />
-        <MakeOsMenuButton path={imgEletrica} buttonText="Elétrica" />
-        <MakeOsMenuButton path={imgMotor} buttonText="Motor" />
-        <MakeOsMenuButton path={imgSuspensao} buttonText="Suspensão" />
+        <MakeOsMenuButton
+          path={imgCarroceria}
+          buttonText="Carroceria"
+          onPress={() => navigateToForm('3')}
+        />
+        <MakeOsMenuButton
+          path={imgEletrica}
+          buttonText="Elétrica"
+          onPress={() => navigateToForm('2')}
+        />
+        <MakeOsMenuButton
+          path={imgMotor}
+          buttonText="Motor"
+          onPress={() => navigateToForm('1')}
+        />
+        <MakeOsMenuButton
+          path={imgSuspensao}
+          buttonText="Suspensão"
+          onPress={() => navigateToForm('4')}
+        />
       </Container>
     </>
   )
