@@ -10,7 +10,7 @@ export class RemoteGetOrder implements GetOrder {
     private readonly httpClient: HttpClient,
   ) {}
 
-  async get(): Promise<OrderDataModel | ErrorsDetailsModel> {
+  async get(): Promise<OrderDataModel> {
     const httpResponse = await this.httpClient.request({
       url: this.url,
       method: 'get',

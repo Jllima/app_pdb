@@ -94,7 +94,7 @@ const FormOS: React.FC<Props> = ({
 
     try {
       const response = await remoteCreateOs.create(createFormData())
-      navigation.navigate('ShowOs', {osId: response.data.id})
+      navigation.navigate('ShowOs', {orderIdParams: response.data.id})
     } catch (error: any) {
       const messageError: string = error.message
       setFormData({

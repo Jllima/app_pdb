@@ -3,15 +3,29 @@ import {RemoteGetOrder} from '@pdb/data/usecases'
 import {AxiosHttpClient} from '@pdb/infra/http'
 import {basUrl} from '@pdb/services'
 import {ShowOs} from '@pdb/presentation/pages'
+import {NavigatorScreenParams} from '@react-navigation/native'
+import {AuthorizeHttpClientDecorator} from '@pdb/main/decorators'
+import {AsyncStorageAdapter} from '@pdb/infra/cache'
 
-const httpClient = new AxiosHttpClient()
-const remoteGetOrder = (id: string): RemoteGetOrder =>
-  new RemoteGetOrder(`${basUrl as string}/orders/${id}`, httpClient)
+const remoteGetOrder = (id: string): RemoteGetOrder => {
+  const authHttpClient = new AuthorizeHttpClientDecorator(
+    new AsyncStorageAdapter(),
+    new AxiosHttpClient(),
+  )
 
-type Props = {
-  orderIdParams: string
+  return new RemoteGetOrder(`${basUrl as string}/orders/${id}`, authHttpClient)
 }
 
-export const CreateConfirmPage: React.FC<Props> = ({orderIdParams}: Props) => (
-  <ShowOs getOrder={remoteGetOrder(orderIdParams)} />
-)
+type Props = {
+  orderIdParams: any
+}
+
+type Params = {
+  route: NavigatorScreenParams<Props>
+}
+
+export const CreateShowOSPage: React.FC<Params> = ({route}: Params) => {
+  const {orderIdParams} = route.params
+
+  return <ShowOs getOrder={remoteGetOrder(orderIdParams)} />
+}
