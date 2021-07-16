@@ -1,61 +1,51 @@
 import React from 'react'
 import {Image} from 'react-native'
+import {HeaderApp} from '@pdb/presentation/components'
 import {
-  Container,
-  Header,
   Content,
   Card,
   CardItem,
   Thumbnail,
   Text,
-  Button,
-  Icon,
   Left,
   Body,
-  Right,
+  Container,
 } from 'native-base'
+import {imgLogo} from '@pdb/presentation/assets'
+import {Styles} from './styles'
 
 const ShowOS: React.FC = () => {
   return (
-    <Container>
-      <Header />
-      <Content>
-        <Card>
-          <CardItem>
-            <Left>
-              <Thumbnail source={{uri: 'Image URL'}} />
-              <Body>
-                <Text>NativeBase</Text>
-                <Text note>GeekyAnts</Text>
-              </Body>
-            </Left>
-          </CardItem>
-          <CardItem cardBody>
-            <Image
-              source={{uri: 'Image URL'}}
-              style={{height: 200, width: null, flex: 1}}
-            />
-          </CardItem>
-          <CardItem>
-            <Left>
-              <Button transparent>
-                <Icon active name="thumbs-up" />
-                <Text>12 Likes</Text>
-              </Button>
-            </Left>
-            <Body>
-              <Button transparent>
-                <Icon active name="chatbubbles" />
-                <Text>4 Comments</Text>
-              </Button>
-            </Body>
-            <Right>
-              <Text>11h ago</Text>
-            </Right>
-          </CardItem>
-        </Card>
-      </Content>
-    </Container>
+    <>
+      <HeaderApp title="Visualizar OS" />
+      <Container style={Styles.container}>
+        <Content>
+          <Card>
+            <CardItem>
+              <Left>
+                <Thumbnail source={imgLogo} />
+                <Body>
+                  <Text>OS: P1234</Text>
+                  <Text note>Motorista: Edson</Text>
+                </Body>
+              </Left>
+            </CardItem>
+            <CardItem cardBody>
+              <Image source={imgLogo} style={Styles.imageTitle} />
+            </CardItem>
+            <CardItem>
+              <Left>
+                <Body>
+                  <Text>Veículo: 123</Text>
+                  <Text>Categoria: Carroceria</Text>
+                  <Text>Problema: Batida</Text>
+                </Body>
+              </Left>
+            </CardItem>
+          </Card>
+        </Content>
+      </Container>
+    </>
   )
 }
 
