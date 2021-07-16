@@ -7,7 +7,7 @@ const MakeOsStack = createStackNavigator()
 
 const MakeOsRoutes: React.FC = () => {
   return (
-    <MakeOsStack.Navigator initialRouteName="ShowOs">
+    <MakeOsStack.Navigator initialRouteName="MakeOs">
       <MakeOsStack.Screen
         name="MakeOs"
         component={MakeOs}
