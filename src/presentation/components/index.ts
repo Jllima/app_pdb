@@ -5,3 +5,8 @@ export {default as TabBottomNavigation} from './tab-bottom-navigation/tab-bottom
 export {default as HeaderApp} from './header-app/header-app'
 export {default as MakeOsMenuButton} from './make-os-menu-button/make-os-menu-button'
 export {default as FollowOsTabContent} from './follow-os-tab-content/follow-os-tab-content'
+export {default as Select} from './select/select'
+export {default as HeaderStack} from './header-stack/header-stack'
+export {default as PhotoButton} from './photo-button/photo-button'
+export {default as UploadPhoto} from './upload-photo/upload-photo'
+export {default as Spinner} from './spinner/spinner'
