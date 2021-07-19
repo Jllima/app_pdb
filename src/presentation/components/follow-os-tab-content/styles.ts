@@ -1,63 +1,87 @@
-/* eslint-disable prettier/prettier */
-import styled from 'styled-components/native'
+import styled, {css} from 'styled-components/native'
 import Colors from '@pdb/presentation/styles/colors'
-import {Icon, Text} from 'native-base'
 
-const StatusArea = styled.View`
-  flexDirection: row;
-  alignItems: center;
-  justifyContent: center;
-  borderRadius: 25px;
-  height: 25px;
-  width: 132px;
-  margin-right: 50px;
-`
+type StatusProps = {
+  statusId: number
+}
+
 const InfoArea = styled.View`
-  flexDirection: column;
-  alignItems: center;
-  justifyContent: space-between;
-  margin-left: 10px;
-  margin-right: 10px;
-  
+  flex: 2;
+  flex-direction: column;
+  align-items: flex-start;
 `
-const IconTab = styled(Icon)`
-  margin-left: 5px;
-  font-size: 85px;
-  color: #FFFFFF
-`
-
 const OsNumber = styled.Text`
-  margin-top: 5px;
-  font-size: 22px;
-  font-weight: bold;
-  color: ${Colors.grey}
-  margin-left: -60px;
+  font-size: 19px;
+  font-weight: 400;
+  color: ${Colors.darkGrey}
+  margin-left: -20px;
   margin-top: 5px;
 `
 const Description = styled.Text`
   margin-top: 5px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 300;
   color: ${Colors.grey}
-  margin-left: -10px;
+  margin-left: -20px;
   margin-bottom: 10px;
 `
 const Container = styled.TouchableOpacity`
-  alignItems: center;
-  justifyContent: space-between;
-  backgroundColor: ${Colors.write};
-  height: 57px;
-  flexDirection: row;
-` 
+  flex-direction: row;
+  align-items: center;
+  background-color: ${Colors.write};
+  height: 65px;
+  border-bottom-color: ${Colors.ligthGrey};
+  border-bottom-width: 1px;
+`
+const ImageContent = styled.View`
+  flex: 1;
+`
 const Image = styled.Image`
   width: 40px;
   height: 40px;
-  margin-left:10px;
+  margin-left: 10px;
 `
-const Status = styled(Text)`
-  font-size: 13px;
-  font-weight: 900;
-  color: ${Colors.write}
+const StatusArea = styled.View<StatusProps>`
+  flex: 1;
+  flex-direction: row;
+  justify-content: center;
+  padding: 3px;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-right: 30px;
+  border-radius: 25px;
+  ${props => {
+    switch (props.statusId) {
+      case 1:
+        return css`
+          background-color: ${Colors.lightOrange};
+        `
+      case 2:
+        return css`
+          background-color: ${Colors.primaryColor};
+        `
+      default:
+        return css`
+          background-color: ${Colors.red};
+        `
+    }
+  }}
 `
 
-export {StatusArea, IconTab, Description, Container, Image, Status, InfoArea, OsNumber}
+const Status = styled.Text`
+  font-size: 13px;
+  font-weight: 900;
+  color: ${Colors.write};
+  text-align: center;
+`
+
+export {
+  StatusArea,
+  Description,
+  Container,
+  Image,
+  Status,
+  InfoArea,
+  OsNumber,
+  ImageContent,
+}

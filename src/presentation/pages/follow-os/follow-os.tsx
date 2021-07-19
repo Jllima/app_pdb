@@ -1,54 +1,37 @@
-import React from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useEffect, useState} from 'react'
 import {Container} from './styles'
-import {FollowOsTabContent} from '@pdb/presentation/components'
+import {FollowOsTabContent, Spinner} from '@pdb/presentation/components'
 import {Header, Body, Title, Tabs, Tab} from 'native-base'
-import {imgCarroceria} from '@pdb/presentation/assets'
-import {FlatList, StyleSheet} from 'react-native'
-import Colors from '@pdb/presentation/styles/colors'
+import {FlatList} from 'react-native'
+import {RemoteListOrdersOpenedsAndCloseds} from '@pdb/data/usecases'
+import {ListOrdersOpenedsAndClosedsModel} from '@pdb/domain/models/order-model'
 
-const colorStyle = StyleSheet.create({
-  warning: {
-    backgroundColor: Colors.lightOrange,
-  },
-  positive: {
-    backgroundColor: Colors.primaryColor,
-  },
-  closed: {
-    backgroundColor: Colors.red,
-  },
-})
+type Props = {
+  listOrdersOpenedsAndCloseds: RemoteListOrdersOpenedsAndCloseds
+}
 
-const infosOpen = [
-  {
-    id: '304',
-    imagem: {imgCarroceria},
-    numOS: 'OS 304',
-    description: 'Data: 14/07/2021 12h',
-    status: 'ENTRADA',
-    style: colorStyle.warning,
-  },
-  {
-    id: '57',
-    imagem: {imgCarroceria},
-    numOS: 'OS 57',
-    description: 'Data: 11/07/2021 14h',
-    status: 'MANUTENÇÃO',
-    style: colorStyle.positive,
-  },
-]
+const FollowOs: React.FC<Props> = ({listOrdersOpenedsAndCloseds}: Props) => {
+  const [isLoading, setIsLoading] = useState(false)
+  const [state, setState] = useState<ListOrdersOpenedsAndClosedsModel>(
+    {} as ListOrdersOpenedsAndClosedsModel,
+  )
+  const loadOrders = async (): Promise<void> => {
+    setIsLoading(true)
+    try {
+      const response = await listOrdersOpenedsAndCloseds.get()
+      setState(response)
+      setIsLoading(false)
+    } catch (error) {
+      console.log(error)
+      setIsLoading(false)
+    }
+  }
 
-const infosCloseds = [
-  {
-    id: '32',
-    imagem: {imgCarroceria},
-    numOS: 'OS 32',
-    description: 'Data: 05/07/2021 14h',
-    status: 'FINALIZADA',
-    style: colorStyle.closed,
-  },
-]
+  useEffect(() => {
+    loadOrders()
+  }, [])
 
-const FollowOs: React.FC = () => {
   return (
     <>
       <Header>
@@ -59,37 +42,44 @@ const FollowOs: React.FC = () => {
       <Container>
         <Tabs>
           <Tab heading="Abertas">
-            <FlatList
-              keyExtractor={item => item.id}
-              data={infosOpen}
-              renderItem={obj => {
-                return (
-                  <FollowOsTabContent
-                    path={obj.item.imagem.imgCarroceria}
-                    osNumber={obj.item.numOS}
-                    description={obj.item.description}
-                    status={obj.item.status}
-                    viewStyle={obj.item.style}
-                  />
-                )
-              }}
-            />
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <FlatList
+                data={state.openeds}
+                renderItem={obj => {
+                  return (
+                    <FollowOsTabContent
+                      osNumber={obj.item.reference}
+                      status={obj.item.status}
+                      createdAt={obj.item.created_at}
+                      categoryId={obj.item.category_id}
+                      statusId={obj.item.status_id}
+                    />
+                  )
+                }}
+              />
+            )}
           </Tab>
           <Tab heading="Fechadas">
-            <FlatList
-              data={infosCloseds}
-              renderItem={obj => {
-                return (
-                  <FollowOsTabContent
-                    path={obj.item.imagem.imgCarroceria}
-                    osNumber={obj.item.numOS}
-                    description={obj.item.description}
-                    status={obj.item.status}
-                    viewStyle={obj.item.style}
-                  />
-                )
-              }}
-            />
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <FlatList
+                data={state.closeds}
+                renderItem={obj => {
+                  return (
+                    <FollowOsTabContent
+                      osNumber={obj.item.reference}
+                      status={obj.item.status}
+                      createdAt={obj.item.created_at}
+                      categoryId={obj.item.category_id}
+                      statusId={obj.item.status_id}
+                    />
+                  )
+                }}
+              />
+            )}
           </Tab>
         </Tabs>
       </Container>

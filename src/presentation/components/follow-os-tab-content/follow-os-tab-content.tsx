@@ -1,6 +1,5 @@
 import React from 'react'
-import {ViewStyle, TouchableOpacityProps, ImageURISource} from 'react-native'
-
+import {TouchableOpacityProps} from 'react-native'
 import {
   StatusArea,
   Description,
@@ -9,33 +8,37 @@ import {
   Status,
   InfoArea,
   OsNumber,
+  ImageContent,
 } from './styles'
+import {choseImgCategory} from '@pdb/presentation/helpers'
 
 interface ButtonProps extends TouchableOpacityProps {
-  path: ImageURISource
-  description: string
+  categoryId: number
+  statusId: number
+  createdAt: string
   status: string
   osNumber: string
-  viewStyle: ViewStyle
 }
 
 const FollowOsTabContent: React.FC<ButtonProps> = ({
-  path,
-  description,
+  categoryId,
+  createdAt,
   status,
   osNumber,
-  viewStyle,
+  statusId,
   ...props
 }) => {
   return (
     <>
       <Container {...props}>
-        <Image source={path} />
+        <ImageContent>
+          <Image source={choseImgCategory(categoryId)} />
+        </ImageContent>
         <InfoArea>
           <OsNumber>{osNumber}</OsNumber>
-          <Description>{description}</Description>
+          <Description>Data: {createdAt}</Description>
         </InfoArea>
-        <StatusArea style={viewStyle}>
+        <StatusArea statusId={statusId}>
           <Status>{status}</Status>
         </StatusArea>
       </Container>
