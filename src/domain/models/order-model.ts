@@ -22,6 +22,7 @@ export type OrderDataModel = {
 export type OrderListModel = {
   id: number
   category_id: number
+  status_id: number
   created_at: string
   reference: string
   status: string

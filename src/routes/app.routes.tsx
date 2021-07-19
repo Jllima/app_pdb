@@ -1,9 +1,10 @@
 import React from 'react'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import {TabBottomNavigation} from '@pdb/presentation/components'
-import {Menu, Account, FollowOs} from '@pdb/presentation/pages'
+import {Menu, Account} from '@pdb/presentation/pages'
 import {HOME, OS, SETTINGS, MAKEOS} from '@pdb/constants'
 import MakeOsRoutes from './make-os.routes'
+import {CreateFollowOsPage} from '@pdb/main/factories'
 
 const Tab = createBottomTabNavigator()
 
@@ -18,7 +19,11 @@ const AppRoutes: React.FC = () => {
         component={MakeOsRoutes}
         options={{title: MAKEOS}}
       />
-      <Tab.Screen name="SearchOs" component={FollowOs} options={{title: OS}} />
+      <Tab.Screen
+        name="SearchOs"
+        component={CreateFollowOsPage}
+        options={{unmountOnBlur: true, title: OS}}
+      />
       <Tab.Screen
         name="Settings"
         component={Account}
