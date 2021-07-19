@@ -17,7 +17,7 @@ const AppRoutes: React.FC = () => {
       <Tab.Screen
         name="MakeOsRoutes"
         component={MakeOsRoutes}
-        options={{title: MAKEOS}}
+        options={{unmountOnBlur: true, title: MAKEOS}}
       />
       <Tab.Screen
         name="SearchOs"
