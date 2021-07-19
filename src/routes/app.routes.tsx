@@ -4,7 +4,7 @@ import {TabBottomNavigation} from '@pdb/presentation/components'
 import {Menu, Account} from '@pdb/presentation/pages'
 import {HOME, OS, SETTINGS, MAKEOS} from '@pdb/constants'
 import MakeOsRoutes from './make-os.routes'
-import {CreateFollowOsPage} from '@pdb/main/factories'
+import FollowOsRoutes from './follow-os.routes'
 
 const Tab = createBottomTabNavigator()
 
@@ -21,7 +21,7 @@ const AppRoutes: React.FC = () => {
       />
       <Tab.Screen
         name="SearchOs"
-        component={CreateFollowOsPage}
+        component={FollowOsRoutes}
         options={{unmountOnBlur: true, title: OS}}
       />
       <Tab.Screen

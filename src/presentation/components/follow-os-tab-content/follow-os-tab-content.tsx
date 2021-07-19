@@ -11,35 +11,30 @@ import {
   ImageContent,
 } from './styles'
 import {choseImgCategory} from '@pdb/presentation/helpers'
+import {useNavigation} from '@react-navigation/native'
+import {OrderListModel} from '@pdb/domain/models/order-model'
 
 interface ButtonProps extends TouchableOpacityProps {
-  categoryId: number
-  statusId: number
-  createdAt: string
-  status: string
-  osNumber: string
+  os: OrderListModel
 }
 
-const FollowOsTabContent: React.FC<ButtonProps> = ({
-  categoryId,
-  createdAt,
-  status,
-  osNumber,
-  statusId,
-  ...props
-}) => {
+const FollowOsTabContent: React.FC<ButtonProps> = ({os, ...props}) => {
+  const navigation = useNavigation()
+
   return (
     <>
-      <Container {...props}>
+      <Container
+        {...props}
+        onPress={() => navigation.navigate('ShowOs', {orderIdParams: os.id})}>
         <ImageContent>
-          <Image source={choseImgCategory(categoryId)} />
+          <Image source={choseImgCategory(os.category_id)} />
         </ImageContent>
         <InfoArea>
-          <OsNumber>{osNumber}</OsNumber>
-          <Description>Data: {createdAt}</Description>
+          <OsNumber>{os.reference}</OsNumber>
+          <Description>Data: {os.created_at}</Description>
         </InfoArea>
-        <StatusArea statusId={statusId}>
-          <Status>{status}</Status>
+        <StatusArea statusId={os.status_id}>
+          <Status>{os.status}</Status>
         </StatusArea>
       </Container>
     </>
