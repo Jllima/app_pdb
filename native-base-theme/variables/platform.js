@@ -127,7 +127,7 @@ export default {
   CheckboxIconSize: platform === PLATFORM.IOS ? 19 : 16,
   CheckboxIconMarginTop: platform === PLATFORM.IOS ? undefined : 1,
   CheckboxFontSize: platform === PLATFORM.IOS ? 12 / 0.9 : 17,
-  checkboxBgColor: '#039BE5',
+  checkboxBgColor: '#289ABB',
   checkboxSize: 20,
   checkboxTickColor: '#fff',
   checkboxDefaultColor: 'transparent',
@@ -135,7 +135,7 @@ export default {
 
   // Color
   brandPrimary: platform === PLATFORM.IOS ? '#289ABB' : '#289ABB',
-  brandInfo: '#62B1F6',
+  brandInfo: '#289ABB',
   brandSuccess: '#5cb85c',
   brandDanger: '#d9534f',
   brandWarning: '#f0ad4e',
@@ -278,7 +278,7 @@ export default {
   // Tab
   tabBarDisabledTextColor: '#BDBDBD',
   tabDefaultBg: platform === PLATFORM.IOS ? '#F8F8F8' : '#289ABB',
-  topTabBarTextColor: platform === PLATFORM.IOS ? '#6b6b6b' : '#96d7e9',
+  topTabBarTextColor: platform === PLATFORM.IOS ? '#6b6b6b' : '#289ABB',
   topTabBarActiveTextColor: platform === PLATFORM.IOS ? '#289ABB' : '#fff',
   topTabBarBorderColor: platform === PLATFORM.IOS ? '#a7a6ab' : '#fff',
   topTabBarActiveBorderColor: platform === PLATFORM.IOS ? '#289ABB' : '#fff',
