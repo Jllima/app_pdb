@@ -7,6 +7,7 @@ export type OrderModel = {
   problem: string
   reference: string
   status: string
+  employee_name: string
 }
 
 export type OrderDataModel = {

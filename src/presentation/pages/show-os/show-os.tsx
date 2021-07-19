@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react'
 import {Image, Alert} from 'react-native'
-import {HeaderApp, Spinner} from '@pdb/presentation/components'
+import {HeaderStack, Spinner} from '@pdb/presentation/components'
 import {
   Content,
   Card,
@@ -42,7 +42,7 @@ const ShowOS: React.FC<Props> = ({getOrder}: Props) => {
 
   return (
     <>
-      <HeaderApp title="Visualizar OS" />
+      <HeaderStack title="OS" />
       <Container style={Styles.container}>
         <Content>
           <Card>
@@ -59,7 +59,7 @@ const ShowOS: React.FC<Props> = ({getOrder}: Props) => {
                     <Thumbnail source={imgLogo} />
                     <Body>
                       <Text>OS: {order.data.reference}</Text>
-                      <Text note>Motorista: Edson</Text>
+                      <Text note>Motorista: {order.data.employee_name}</Text>
                     </Body>
                   </Left>
                 </CardItem>

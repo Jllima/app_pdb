@@ -48,15 +48,7 @@ const FollowOs: React.FC<Props> = ({listOrdersOpenedsAndCloseds}: Props) => {
               <FlatList
                 data={state.openeds}
                 renderItem={obj => {
-                  return (
-                    <FollowOsTabContent
-                      osNumber={obj.item.reference}
-                      status={obj.item.status}
-                      createdAt={obj.item.created_at}
-                      categoryId={obj.item.category_id}
-                      statusId={obj.item.status_id}
-                    />
-                  )
+                  return <FollowOsTabContent os={obj.item} />
                 }}
               />
             )}
@@ -68,15 +60,7 @@ const FollowOs: React.FC<Props> = ({listOrdersOpenedsAndCloseds}: Props) => {
               <FlatList
                 data={state.closeds}
                 renderItem={obj => {
-                  return (
-                    <FollowOsTabContent
-                      osNumber={obj.item.reference}
-                      status={obj.item.status}
-                      createdAt={obj.item.created_at}
-                      categoryId={obj.item.category_id}
-                      statusId={obj.item.status_id}
-                    />
-                  )
+                  return <FollowOsTabContent os={obj.item} />
                 }}
               />
             )}

@@ -5,6 +5,15 @@ type StatusProps = {
   statusId: number
 }
 
+const Container = styled.TouchableOpacity`
+  flex-direction: row;
+  align-items: center;
+  background-color: ${Colors.write};
+  height: 65px;
+  border-bottom-color: ${Colors.ligthGrey};
+  border-bottom-width: 1px;
+`
+
 const InfoArea = styled.View`
   flex: 2;
   flex-direction: column;
@@ -24,14 +33,6 @@ const Description = styled.Text`
   color: ${Colors.grey}
   margin-left: -20px;
   margin-bottom: 10px;
-`
-const Container = styled.TouchableOpacity`
-  flex-direction: row;
-  align-items: center;
-  background-color: ${Colors.write};
-  height: 65px;
-  border-bottom-color: ${Colors.ligthGrey};
-  border-bottom-width: 1px;
 `
 const ImageContent = styled.View`
   flex: 1;
