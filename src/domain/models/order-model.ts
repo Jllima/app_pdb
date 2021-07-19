@@ -27,4 +27,9 @@ export type OrderListModel = {
   status: string
 }
 
+export type ListOrdersOpenedsAndClosedsModel = {
+  openeds: OrderListModel[]
+  closeds: OrderListModel[]
+}
+
 export type OrdersModel = OrderListModel[]
