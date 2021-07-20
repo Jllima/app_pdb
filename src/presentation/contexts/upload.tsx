@@ -24,6 +24,9 @@ export const UplaodPovider: React.FC = ({children}, options: ImageProps) => {
       if (response && typeof response.assets !== 'undefined') {
         setPhoto(response.assets[0])
         setLoading(false)
+      } else {
+        setPhoto(null)
+        setLoading(false)
       }
     })
   }

@@ -1,6 +1,5 @@
 import React from 'react'
-import {ViewStyle, TouchableOpacityProps, ImageURISource} from 'react-native'
-
+import {TouchableOpacityProps} from 'react-native'
 import {
   StatusArea,
   Description,
@@ -9,34 +8,33 @@ import {
   Status,
   InfoArea,
   OsNumber,
+  ImageContent,
 } from './styles'
+import {choseImgCategory} from '@pdb/presentation/helpers'
+import {useNavigation} from '@react-navigation/native'
+import {OrderListModel} from '@pdb/domain/models/order-model'
 
 interface ButtonProps extends TouchableOpacityProps {
-  path: ImageURISource
-  description: string
-  status: string
-  osNumber: string
-  viewStyle: ViewStyle
+  os: OrderListModel
 }
 
-const FollowOsTabContent: React.FC<ButtonProps> = ({
-  path,
-  description,
-  status,
-  osNumber,
-  viewStyle,
-  ...props
-}) => {
+const FollowOsTabContent: React.FC<ButtonProps> = ({os, ...props}) => {
+  const navigation = useNavigation()
+
   return (
     <>
-      <Container {...props}>
-        <Image source={path} />
+      <Container
+        {...props}
+        onPress={() => navigation.navigate('ShowOs', {orderIdParams: os.id})}>
+        <ImageContent>
+          <Image source={choseImgCategory(os.category_id)} />
+        </ImageContent>
         <InfoArea>
-          <OsNumber>{osNumber}</OsNumber>
-          <Description>{description}</Description>
+          <OsNumber>{os.reference}</OsNumber>
+          <Description>Data: {os.created_at}</Description>
         </InfoArea>
-        <StatusArea style={viewStyle}>
-          <Status>{status}</Status>
+        <StatusArea statusId={os.status_id}>
+          <Status>{os.status}</Status>
         </StatusArea>
       </Container>
     </>
