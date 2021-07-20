@@ -10,7 +10,7 @@ const Menu: React.FC = () => {
 
   return (
     <>
-      <HeaderApp title={`Seja bem vindo(a): ${user.name}`} />
+      <HeaderApp title={`Seja bem vindo(a): ${user.employee_name}`} />
       <Container>
         <MenuButton
           iconName="document-text-outline"

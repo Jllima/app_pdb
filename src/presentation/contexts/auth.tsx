@@ -41,7 +41,7 @@ export const AuthProvider: React.FC = ({children}) => {
         accessToken,
         user: {
           id: user_id,
-          name,
+          employee_name: name,
           confirmation,
         },
       })
@@ -51,13 +51,14 @@ export const AuthProvider: React.FC = ({children}) => {
   }
 
   const updateStateAccount = (user: UserModel): void => {
-    const {id, name, confirmation} = user
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    const {id, employee_name, confirmation} = user
 
     setData({
       ...data,
       user: {
         id,
-        name,
+        employee_name,
         confirmation,
       },
     })

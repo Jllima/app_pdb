@@ -117,7 +117,7 @@ const FormOS: React.FC<Props> = ({
       <HeaderStack title="Formulário Os" />
       <Container>
         <ScrollView>
-          <TextName>Motorista: {user.name}</TextName>
+          <TextName>Motorista: {user.employee_name}</TextName>
           <TextTime>{dateCurrent}</TextTime>
           <Input
             keyboardType="numeric"
