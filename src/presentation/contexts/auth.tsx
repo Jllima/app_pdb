@@ -14,6 +14,7 @@ type TokenData = {
   user_id: string
   name: string
   confirmation: boolean
+  occupation: string
 }
 
 type StateData = {
@@ -29,7 +30,8 @@ export const AuthProvider: React.FC = ({children}) => {
   const saveAccount = async (accessToken: any): Promise<void> => {
     try {
       // eslint-disable-next-line @typescript-eslint/naming-convention
-      const {user_id, name, confirmation} = jwtDecode<TokenData>(accessToken)
+      const {user_id, name, confirmation, occupation} =
+        jwtDecode<TokenData>(accessToken)
 
       await AsyncStorage.multiSet([
         ['@pdb:access_token', accessToken],
@@ -43,6 +45,7 @@ export const AuthProvider: React.FC = ({children}) => {
           id: user_id,
           employee_name: name,
           confirmation,
+          occupation,
         },
       })
     } catch (error) {
@@ -52,7 +55,7 @@ export const AuthProvider: React.FC = ({children}) => {
 
   const updateStateAccount = (user: UserModel): void => {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    const {id, employee_name, confirmation} = user
+    const {id, employee_name, confirmation, occupation} = user
 
     setData({
       ...data,
@@ -60,6 +63,7 @@ export const AuthProvider: React.FC = ({children}) => {
         id,
         employee_name,
         confirmation,
+        occupation,
       },
     })
   }
