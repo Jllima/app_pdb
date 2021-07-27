@@ -46,7 +46,7 @@ const FormOS: React.FC<Props> = ({
     'data[problem_id]': '',
     'data[vehicle_id]': '',
     'data[status_id]': '1',
-    'data[description]': '1',
+    'data[description]': '',
     isLoading: false,
     errorMessage: '',
     enableButton: true,

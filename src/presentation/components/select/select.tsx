@@ -35,7 +35,7 @@ const Select: React.FC<ButtonProps> = ({
   const handleOptions = (item: any): void => {
     setState({
       ...state,
-      text: item.description || item.car_number,
+      text: item.description || item.car_number || item.name,
       modalVisible: false,
       isSelected: item.id,
     })
@@ -47,7 +47,9 @@ const Select: React.FC<ButtonProps> = ({
       <ElementOption
         isFocused={state.isFocused}
         onPress={() => handleOptions(item)}>
-        <ElementText>{item.description || item.car_number}</ElementText>
+        <ElementText>
+          {item.description || item.car_number || item.name}
+        </ElementText>
       </ElementOption>
     )
   }
