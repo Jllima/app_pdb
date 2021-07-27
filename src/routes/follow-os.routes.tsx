@@ -4,6 +4,7 @@ import {
   CreateFollowOsPage,
   CreateManageFollowOsPage,
   CreateShowOSPage,
+  CreateManagerEditOrderPage,
 } from '@pdb/main/factories'
 import {AuthContext} from '@pdb/presentation/contexts'
 
@@ -26,6 +27,11 @@ const FollowOsRoutes: React.FC = () => {
       <FollowOsStack.Screen
         name="ShowOs"
         component={CreateShowOSPage}
+        options={{headerShown: false}}
+      />
+      <FollowOsStack.Screen
+        name="ManageOS"
+        component={CreateManagerEditOrderPage}
         options={{headerShown: false}}
       />
     </FollowOsStack.Navigator>

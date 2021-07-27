@@ -50,7 +50,9 @@ const ManagerFollowOs: React.FC<Props> = ({
               <FlatList
                 data={state.openeds}
                 renderItem={obj => {
-                  return <FollowOsTabContent routeName="ShowOs" os={obj.item} />
+                  return (
+                    <FollowOsTabContent routeName="ManageOS" os={obj.item} />
+                  )
                 }}
               />
             )}
@@ -62,7 +64,9 @@ const ManagerFollowOs: React.FC<Props> = ({
               <FlatList
                 data={state.closeds}
                 renderItem={obj => {
-                  return <FollowOsTabContent routeName="ShowOs" os={obj.item} />
+                  return (
+                    <FollowOsTabContent routeName="ManageOS" os={obj.item} />
+                  )
                 }}
               />
             )}
