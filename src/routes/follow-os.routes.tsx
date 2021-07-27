@@ -1,15 +1,26 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {createStackNavigator} from '@react-navigation/stack'
-import {CreateFollowOsPage, CreateShowOSPage} from '@pdb/main/factories'
+import {
+  CreateFollowOsPage,
+  CreateManageFollowOsPage,
+  CreateShowOSPage,
+} from '@pdb/main/factories'
+import {AuthContext} from '@pdb/presentation/contexts'
 
 const FollowOsStack = createStackNavigator()
 
 const FollowOsRoutes: React.FC = () => {
+  const {user} = useContext(AuthContext)
+
   return (
     <FollowOsStack.Navigator initialRouteName="FollowOs">
       <FollowOsStack.Screen
         name="FollowOs"
-        component={CreateFollowOsPage}
+        component={
+          user.occupation === 'manager'
+            ? CreateManageFollowOsPage
+            : CreateFollowOsPage
+        }
         options={{headerShown: false}}
       />
       <FollowOsStack.Screen
