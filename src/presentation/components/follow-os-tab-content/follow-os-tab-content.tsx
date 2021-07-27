@@ -16,16 +16,21 @@ import {OrderListModel} from '@pdb/domain/models/order-model'
 
 interface ButtonProps extends TouchableOpacityProps {
   os: OrderListModel
+  routeName: string
 }
 
-const FollowOsTabContent: React.FC<ButtonProps> = ({os, ...props}) => {
+const FollowOsTabContent: React.FC<ButtonProps> = ({
+  os,
+  routeName,
+  ...props
+}) => {
   const navigation = useNavigation()
 
   return (
     <>
       <Container
         {...props}
-        onPress={() => navigation.navigate('ShowOs', {orderIdParams: os.id})}>
+        onPress={() => navigation.navigate(routeName, {orderIdParams: os.id})}>
         <ImageContent>
           <Image source={choseImgCategory(os.category_id)} />
         </ImageContent>
