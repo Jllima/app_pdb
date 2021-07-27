@@ -7,6 +7,7 @@ import {
   Input,
   HeaderStack,
   UploadPhoto,
+  TextAreaInput,
 } from '@pdb/presentation/components'
 import {RemoteCreateOs, RemoteGetProblemsAndVehicles} from '@pdb/data/usecases'
 import {ProblemModel} from '@pdb/domain/models/problem-model'
@@ -45,6 +46,7 @@ const FormOS: React.FC<Props> = ({
     'data[problem_id]': '',
     'data[vehicle_id]': '',
     'data[status_id]': '1',
+    'data[description]': '1',
     isLoading: false,
     errorMessage: '',
     enableButton: true,
@@ -66,6 +68,9 @@ const FormOS: React.FC<Props> = ({
     data.append('data[problem_id]', formData['data[problem_id]'])
     data.append('data[vehicle_id]', formData['data[vehicle_id]'])
     data.append('data[status_id]', formData['data[status_id]'])
+    if (formData['data[description]']) {
+      data.append('data[description]', formData['data[description]'])
+    }
 
     if (photoImage) {
       data.append('data[image]', {
@@ -136,6 +141,15 @@ const FormOS: React.FC<Props> = ({
             txt="Informe o problema"
             onChangeValue={onChangeValueProblem}
           />
+          {user.occupation === 'manager' && (
+            <TextAreaInput
+              placeholder="Descrição"
+              autoCorrect={false}
+              onChangeText={text =>
+                setFormData({...formData, 'data[description]': text})
+              }
+            />
+          )}
           <UploadPhoto />
           <SubmitButton
             onPress={handleSubmit}
