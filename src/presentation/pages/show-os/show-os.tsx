@@ -12,7 +12,7 @@ import {
   Body,
   Container,
 } from 'native-base'
-import {imgLogo} from '@pdb/presentation/assets'
+import {imgCamera, imgLogo} from '@pdb/presentation/assets'
 import {Styles} from './styles'
 import {OrderDataModel} from '@pdb/domain/models/order-model'
 import {RemoteGetOrder} from '@pdb/data/usecases'
@@ -59,7 +59,9 @@ const ShowOS: React.FC<Props> = ({getOrder}: Props) => {
                     <Thumbnail source={imgLogo} />
                     <Body>
                       <Text>OS: {order.data.reference}</Text>
-                      <Text note>Motorista: {order.data.employee_name}</Text>
+                      <Text note>
+                        Motorista: {order.data.owner.employee_name}
+                      </Text>
                     </Body>
                   </Left>
                 </CardItem>
@@ -68,7 +70,7 @@ const ShowOS: React.FC<Props> = ({getOrder}: Props) => {
                     source={
                       order.meta.links.image_url
                         ? {uri: order.meta.links.image_url}
-                        : imgLogo
+                        : imgCamera
                     }
                     style={Styles.imageTitle}
                   />
@@ -76,9 +78,9 @@ const ShowOS: React.FC<Props> = ({getOrder}: Props) => {
                 <CardItem>
                   <Left>
                     <Body>
-                      <Text>Veículo: {order.data.car_number}</Text>
-                      <Text>Categoria: {order.data.category_name}</Text>
-                      <Text>Problema: {order.data.problem}</Text>
+                      <Text>Veículo: {order.data.vehicle.car_number}</Text>
+                      <Text>Categoria: {order.data.problem.category.name}</Text>
+                      <Text>Problema: {order.data.problem.description}</Text>
                     </Body>
                   </Left>
                 </CardItem>
