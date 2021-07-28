@@ -83,9 +83,7 @@ const ManagerShowOS: React.FC<Props> = ({getOrder}: Props) => {
                       <Text>Categoria: {order.data.problem.category.name}</Text>
                       <Text>Problema: {order.data.problem.description}</Text>
                       {order.data.solution?.description && (
-                        <Text>
-                          Mecãnico: {order.data.solution?.description}
-                        </Text>
+                        <Text>Solução: {order.data.solution?.description}</Text>
                       )}
                       <Text>
                         Descrição: {checkEmpty(order.data.description)}

@@ -56,6 +56,7 @@ const ManagerManageOS: React.FC<Props> = ({
     'data[description]': '',
     'data[car_mecanic_id]': 0,
     statusIsRunning: false,
+    statusIsFinish: false,
     isLoading: false,
     errorMessage: '',
     enableButton: true,
@@ -82,12 +83,17 @@ const ManagerManageOS: React.FC<Props> = ({
     if (formData['data[status_id]'] === 2) {
       textAreaEl.current?.notRequiredField()
       setFormData({...formData, statusIsRunning: true})
+    } else if (formData['data[status_id]'] === 4) {
+      textAreaEl.current?.requiredField()
+      setFormData({...formData, statusIsFinish: true})
     } else {
       textAreaEl.current?.requiredField()
       setFormData({
         ...formData,
         statusIsRunning: false,
+        statusIsFinish: false,
         'data[car_mecanic_id]': 0,
+        'data[solution_id]': 0,
       })
     }
   }, [formData['data[status_id]']])
@@ -111,6 +117,14 @@ const ManagerManageOS: React.FC<Props> = ({
 
   const handleSubmit = async (): Promise<void> => {
     if (
+      formData['data[status_id]'] === 4 &&
+      formData['data[solution_id]'] === 0
+    ) {
+      Alert.alert('Informe a solução!')
+      return
+    }
+
+    if (
       formData['data[status_id]'] === 3 ||
       (formData['data[status_id]'] === 4 &&
         formData['data[description]'] === '')
@@ -132,7 +146,7 @@ const ManagerManageOS: React.FC<Props> = ({
     try {
       const data = createFormData()
       await managerOrder.manage(data)
-      navigation.navigate('ShowOs', {orderIdParams: order.data.id})
+      navigation.navigate('ManagerShowOs', {orderIdParams: order.data.id})
     } catch (error: any) {
       const messageError: string = error.message
       setFormData({
@@ -151,6 +165,10 @@ const ManagerManageOS: React.FC<Props> = ({
 
   const onChangeValueMecanic = (id: number): void => {
     setFormData({...formData, 'data[car_mecanic_id]': id})
+  }
+
+  const onChangeValueSolution = (id: number): void => {
+    setFormData({...formData, 'data[solution_id]': id})
   }
 
   return (
@@ -213,6 +231,13 @@ const ManagerManageOS: React.FC<Props> = ({
                     options={lists.mecanics}
                     txt="Informe o Mecãnico"
                     onChangeValue={onChangeValueMecanic}
+                  />
+                )}
+                {formData.statusIsFinish && (
+                  <Select
+                    options={lists.solutions}
+                    txt="Informe a Solução"
+                    onChangeValue={onChangeValueSolution}
                   />
                 )}
                 <TextAreaInput
