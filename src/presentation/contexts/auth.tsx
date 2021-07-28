@@ -53,7 +53,7 @@ export const AuthProvider: React.FC = ({children}) => {
     }
   }
 
-  const updateStateAccount = (user: UserModel): void => {
+  const updateStateAccount = async (user: UserModel): Promise<void> => {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     const {id, employee_name, confirmation, occupation} = user
 
