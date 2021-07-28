@@ -28,7 +28,8 @@ const Container = styled(RectButton)`
 const ButtonText = styled.Text`
   color: ${Colors.darkGrey};
   fontSize: 16px;
-  width: ${width - 100}px
+  width: ${width - 100}px;
+  font-weight: 600;
 `
 const IconButtom = styled(Icon)`
   margin-left: 5px;
@@ -70,7 +71,7 @@ const ElementOption = styled.TouchableOpacity<ContainerProps>`
 
 const ElementText = styled.Text`
   font-size: 17px;
-  color: ${Colors.darkGrey}
+  color: ${Colors.darkGrey};
 `
 
 

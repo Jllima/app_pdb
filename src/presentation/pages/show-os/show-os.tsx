@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react'
 import {Image, Alert} from 'react-native'
-import {HeaderStack, Spinner} from '@pdb/presentation/components'
+import {HeaderStack, Spinner, StatusOs} from '@pdb/presentation/components'
 import {
   Content,
   Card,
@@ -81,6 +81,16 @@ const ShowOS: React.FC<Props> = ({getOrder}: Props) => {
                       <Text>Veículo: {order.data.vehicle.car_number}</Text>
                       <Text>Categoria: {order.data.problem.category.name}</Text>
                       <Text>Problema: {order.data.problem.description}</Text>
+                    </Body>
+                  </Left>
+                </CardItem>
+                <CardItem>
+                  <Left>
+                    <Body>
+                      <StatusOs
+                        statusId={order.data.status.id}
+                        statusName={order.data.status.name}
+                      />
                     </Body>
                   </Left>
                 </CardItem>

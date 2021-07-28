@@ -15,6 +15,7 @@ const TextAreaEl = styled.TextInput<TextInputProps>`
   margin-top: 10px;
   margin-horizontal: 23px;
   font-size: 16px;
+  font-weight: 600;
   height: 130px;
   border: 1px;
   background-color: ${Colors.ligthGrey};

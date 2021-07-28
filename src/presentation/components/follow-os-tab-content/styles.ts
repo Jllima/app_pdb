@@ -61,9 +61,13 @@ const StatusArea = styled.View<StatusProps>`
         return css`
           background-color: ${Colors.primaryColor};
         `
-      default:
+      case 3:
         return css`
           background-color: ${Colors.red};
+        `
+      default:
+        return css`
+          background-color: ${Colors.green};
         `
     }
   }}

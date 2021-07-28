@@ -2,7 +2,12 @@ import React from 'react'
 import {TextInputProps} from 'react-native'
 import {TextInput} from './styles'
 
-const Input: React.FC<TextInputProps> = (props: TextInputProps) => {
+interface InputProps extends TextInputProps {
+  placeholderTextColor?: string
+  fontWeight?: string
+}
+
+const Input: React.FC<InputProps> = (props: InputProps) => {
   return <TextInput {...props} />
 }
 

@@ -125,7 +125,8 @@ const ManagerManageOS: React.FC<Props> = ({
     }
 
     if (
-      formData['data[status_id]'] === 3 ||
+      (formData['data[status_id]'] === 3 &&
+        formData['data[description]'] === '') ||
       (formData['data[status_id]'] === 4 &&
         formData['data[description]'] === '')
     ) {

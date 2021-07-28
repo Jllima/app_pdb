@@ -30,7 +30,12 @@ const FollowOsTabContent: React.FC<ButtonProps> = ({
     <>
       <Container
         {...props}
-        onPress={() => navigation.navigate(routeName, {orderIdParams: os.id})}>
+        onPress={() =>
+          navigation.navigate(routeName, {
+            orderIdParams: os.id,
+            orderRefence: os.reference,
+          })
+        }>
         <ImageContent>
           <Image source={choseImgCategory(os.category_id)} />
         </ImageContent>
