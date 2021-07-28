@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import {
   HeaderStack,
   Spinner,
@@ -8,6 +8,7 @@ import {
   TextAreaInput,
   SubmitButton,
 } from '@pdb/presentation/components'
+import {TextAreaHandles} from '@pdb/presentation/components/text-area-input/text-area-input'
 import {Image, Alert} from 'react-native'
 import {
   Content,
@@ -47,6 +48,7 @@ const ManagerManageOS: React.FC<Props> = ({
   const [lists, setLists] = useState<ListToEditOrderModel>(
     {} as ListToEditOrderModel,
   )
+  const textAreaEl = useRef<TextAreaHandles>(null)
 
   const [formData, setFormData] = useState({
     'data[status_id]': 0,
@@ -78,8 +80,10 @@ const ManagerManageOS: React.FC<Props> = ({
 
   useEffect(() => {
     if (formData['data[status_id]'] === 2) {
+      textAreaEl.current?.notRequiredField()
       setFormData({...formData, statusIsRunning: true})
     } else {
+      textAreaEl.current?.requiredField()
       setFormData({
         ...formData,
         statusIsRunning: false,
@@ -106,6 +110,23 @@ const ManagerManageOS: React.FC<Props> = ({
   }
 
   const handleSubmit = async (): Promise<void> => {
+    if (
+      formData['data[status_id]'] === 3 ||
+      (formData['data[status_id]'] === 4 &&
+        formData['data[description]'] === '')
+    ) {
+      Alert.alert('Campo descrição é obrigatório!')
+      return
+    }
+
+    if (
+      formData['data[status_id]'] === 2 &&
+      formData['data[car_mecanic_id]'] === 0
+    ) {
+      Alert.alert('Informe o mecânico!')
+      return
+    }
+
     setFormData({...formData, isLoading: true, enableButton: false})
 
     try {
@@ -195,6 +216,7 @@ const ManagerManageOS: React.FC<Props> = ({
                   />
                 )}
                 <TextAreaInput
+                  ref={textAreaEl}
                   placeholder="Descrição"
                   autoCorrect={false}
                   onChangeText={text =>
