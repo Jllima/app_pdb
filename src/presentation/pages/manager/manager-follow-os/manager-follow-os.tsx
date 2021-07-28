@@ -65,7 +65,10 @@ const ManagerFollowOs: React.FC<Props> = ({
                 data={state.closeds}
                 renderItem={obj => {
                   return (
-                    <FollowOsTabContent routeName="ManageOS" os={obj.item} />
+                    <FollowOsTabContent
+                      routeName="ManagerShowOs"
+                      os={obj.item}
+                    />
                   )
                 }}
               />
