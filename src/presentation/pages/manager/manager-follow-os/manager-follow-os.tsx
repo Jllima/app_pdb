@@ -38,7 +38,7 @@ const ManagerFollowOs: React.FC<Props> = ({
     <>
       <Header>
         <Body>
-          <Title>ACOMPANHAR OS</Title>
+          <Title>GERENCIAR OS</Title>
         </Body>
       </Header>
       <Container>

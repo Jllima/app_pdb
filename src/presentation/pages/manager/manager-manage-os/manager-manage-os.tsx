@@ -256,6 +256,9 @@ const ManagerManageOS: React.FC<Props> = ({
                   iconName="save-outline">
                   Editar
                 </SubmitButton>
+                <CardItem>
+                  <Left />
+                </CardItem>
               </>
             )}
           </Card>
