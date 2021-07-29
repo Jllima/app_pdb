@@ -49,6 +49,8 @@ const ManagerFollowOs: React.FC<Props> = ({
             ) : (
               <FlatList
                 data={state.openeds}
+                refreshing={isLoading}
+                onRefresh={loadOrders}
                 renderItem={obj => {
                   return (
                     <FollowOsTabContent routeName="ManageOS" os={obj.item} />
@@ -63,6 +65,8 @@ const ManagerFollowOs: React.FC<Props> = ({
             ) : (
               <FlatList
                 data={state.closeds}
+                refreshing={isLoading}
+                onRefresh={loadOrders}
                 renderItem={obj => {
                   return (
                     <FollowOsTabContent

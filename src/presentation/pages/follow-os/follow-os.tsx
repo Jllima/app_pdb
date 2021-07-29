@@ -46,6 +46,8 @@ const FollowOs: React.FC<Props> = ({listOrdersOpenedsAndCloseds}: Props) => {
               <Spinner />
             ) : (
               <FlatList
+                refreshing={isLoading}
+                onRefresh={loadOrders}
                 data={state.openeds}
                 renderItem={obj => {
                   return <FollowOsTabContent routeName="ShowOs" os={obj.item} />
@@ -58,6 +60,8 @@ const FollowOs: React.FC<Props> = ({listOrdersOpenedsAndCloseds}: Props) => {
               <Spinner />
             ) : (
               <FlatList
+                refreshing={isLoading}
+                onRefresh={loadOrders}
                 data={state.closeds}
                 renderItem={obj => {
                   return <FollowOsTabContent routeName="ShowOs" os={obj.item} />
