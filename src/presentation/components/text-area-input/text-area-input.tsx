@@ -6,6 +6,7 @@ import React, {
 } from 'react'
 import {TextInput, TextInputProps} from 'react-native'
 import {TextAreaEl} from './styles'
+import Colors from '@pdb/presentation/styles/colors'
 export interface TextAreaHandles extends TextInput {
   requiredField: () => void
   notRequiredField: () => void
@@ -33,10 +34,10 @@ const TextAreaInput: React.ForwardRefRenderFunction<
   return (
     <TextAreaEl
       ref={ref}
-      multiline={true}
-      numberOfLines={5}
-      placeholderTextColor="grey"
+      placeholderTextColor={Colors.darkGrey}
       isValid={isValid}
+      numberOfLines={5}
+      multiline={true}
       {...props}
     />
   )

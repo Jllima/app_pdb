@@ -68,10 +68,10 @@ const SignIn: React.FC<Props> = ({authentication}: Props) => {
         onChangeText={text => setState({...state, username: text})}
       />
       <Input
-        placeholder="Senha"
         autoCorrect={false}
         autoCapitalize="none"
         secureTextEntry
+        placeholder="Senha"
         onChangeText={text => setState({...state, password: text})}
       />
       <SubmitButton
