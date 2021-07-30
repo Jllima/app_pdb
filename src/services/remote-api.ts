@@ -1,7 +1,7 @@
 import {Platform} from 'react-native'
 
 const host = Platform.select({
-  ios: 'http://localhost:3003',
+  ios: 'https://apipdb.herokuapp.com',
   // android: 'http://localhost:3003',
   android: 'https://apipdb.herokuapp.com',
 })
