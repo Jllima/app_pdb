@@ -19,7 +19,9 @@ const Menu: React.FC = () => {
         />
         <MenuButton
           iconName="search-outline"
-          iconText="Acompanhar OS"
+          iconText={
+            user.occupation === 'manager' ? 'Gerenciar OS' : 'Acompanhar OS'
+          }
           onPress={() => navigation.navigate('SearchOs')}
         />
       </Container>
