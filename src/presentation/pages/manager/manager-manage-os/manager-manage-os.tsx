@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect, useRef, useContext} from 'react'
 import {
   HeaderStack,
   Spinner,
@@ -30,6 +30,7 @@ import {
 import {OrderDataModel} from '@pdb/domain/models/order-model'
 import {ListToEditOrderModel} from '@pdb/domain/models/list-to-edit-order-model'
 import {useNavigation} from '@react-navigation/native'
+import {AuthContext} from '@pdb/presentation/contexts'
 
 type Props = {
   editOrder: RemoteEditOrder
@@ -42,6 +43,7 @@ const ManagerManageOS: React.FC<Props> = ({
   managerOrder,
   getOrder,
 }: Props) => {
+  const {setGoBack} = useContext(AuthContext)
   const navigation = useNavigation()
   const [isLoading, setIsLoading] = useState(true)
   const [order, setOrder] = useState<OrderDataModel>({} as OrderDataModel)
@@ -147,6 +149,7 @@ const ManagerManageOS: React.FC<Props> = ({
     try {
       const data = createFormData()
       await managerOrder.manage(data)
+      setGoBack(false)
       navigation.navigate('ManagerShowOs', {orderIdParams: order.data.id})
     } catch (error: any) {
       const messageError: string = error.message
@@ -192,7 +195,7 @@ const ManagerManageOS: React.FC<Props> = ({
                     <Body>
                       <Text>OS: {order.data.reference}</Text>
                       <Text note>
-                        Motorista: {order.data.owner.employee_name}
+                        Solicitante: {order.data.owner.employee_name}
                       </Text>
                     </Body>
                   </Left>
@@ -230,7 +233,7 @@ const ManagerManageOS: React.FC<Props> = ({
                 {formData.statusIsRunning && (
                   <Select
                     options={lists.mecanics}
-                    txt="Informe o Mecãnico"
+                    txt="Informe o mecânico"
                     onChangeValue={onChangeValueMecanic}
                   />
                 )}

@@ -5,9 +5,11 @@ import {UserModel} from '@pdb/domain/models/user-model'
 interface AuthContextData {
   token: string
   user: UserModel
+  isGoBack: boolean
   saveAccount: (accesaToken: string) => Promise<void>
   signOut: () => Promise<void>
   updateStateAccount: (user: UserModel) => void
+  setGoBack: (isBack: boolean) => void
 }
 
 type TokenData = {
@@ -27,6 +29,8 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 
 export const AuthProvider: React.FC = ({children}) => {
   const [data, setData] = useState<StateData>({} as StateData)
+  const [isGoBack, setIsGoBack] = useState(false)
+
   const saveAccount = async (accessToken: any): Promise<void> => {
     try {
       // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -68,6 +72,10 @@ export const AuthProvider: React.FC = ({children}) => {
     })
   }
 
+  const setGoBack = (value: boolean): void => {
+    setIsGoBack(value)
+  }
+
   const signOut = async (): Promise<void> => {
     await AsyncStorage.multiRemove(['@pdb:access_token', '@pdb:user_name'])
 
@@ -78,9 +86,11 @@ export const AuthProvider: React.FC = ({children}) => {
     <AuthContext.Provider
       value={{
         token: data.accessToken,
+        isGoBack,
         saveAccount,
         signOut,
         updateStateAccount,
+        setGoBack,
         user: data.user,
       }}>
       {children}

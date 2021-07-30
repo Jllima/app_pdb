@@ -34,7 +34,7 @@ const FormOS: React.FC<Props> = ({
 }: Props) => {
   const navigation = useNavigation()
   const {photoImage} = useContext(UploadContext)
-  const {user} = useContext(AuthContext)
+  const {user, setGoBack} = useContext(AuthContext)
 
   const [state, setState] = useState<StateData>({
     problemOptions: [],
@@ -99,6 +99,7 @@ const FormOS: React.FC<Props> = ({
 
     try {
       const response = await remoteCreateOs.create(createFormData())
+      setGoBack(false)
       navigation.navigate('ShowOs', {orderIdParams: response.data.id})
     } catch (error: any) {
       const messageError: string = error.message
@@ -122,7 +123,7 @@ const FormOS: React.FC<Props> = ({
       <HeaderStack title="Formulário Os" />
       <Container>
         <ScrollView>
-          <TextName>Motorista: {user.employee_name}</TextName>
+          <TextName>Solicitante: {user.employee_name}</TextName>
           <TextTime>{dateCurrent}</TextTime>
           <Input
             keyboardType="numeric"

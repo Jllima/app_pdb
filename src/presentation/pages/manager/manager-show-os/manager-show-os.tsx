@@ -61,7 +61,7 @@ const ManagerShowOS: React.FC<Props> = ({getOrder}: Props) => {
                     <Body>
                       <Text>OS: {order.data.reference}</Text>
                       <Text note>
-                        Motorista: {order.data.owner.employee_name}
+                        Solicitante: {order.data.owner.employee_name}
                       </Text>
                     </Body>
                   </Left>
@@ -89,7 +89,7 @@ const ManagerShowOS: React.FC<Props> = ({getOrder}: Props) => {
                         Descrição: {checkEmpty(order.data.description)}
                       </Text>
                       {order.data.car_mecanic?.name && (
-                        <Text>Mecãnico: {order.data.car_mecanic?.name}</Text>
+                        <Text>Mecânico: {order.data.car_mecanic?.name}</Text>
                       )}
                     </Body>
                   </Left>

@@ -60,7 +60,7 @@ const ShowOS: React.FC<Props> = ({getOrder}: Props) => {
                     <Body>
                       <Text>OS: {order.data.reference}</Text>
                       <Text note>
-                        Motorista: {order.data.owner.employee_name}
+                        Solicitante: {order.data.owner.employee_name}
                       </Text>
                     </Body>
                   </Left>
