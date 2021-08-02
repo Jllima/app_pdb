@@ -1,9 +1,23 @@
-import React from 'react'
-import {TextInputProps} from 'react-native'
+import React, {useRef, useEffect} from 'react'
+import {TextInputProps, Platform} from 'react-native'
 import {TextInput} from './styles'
 
-const Input: React.FC<TextInputProps> = (props: TextInputProps) => {
-  return <TextInput {...props} />
+interface InputProps extends TextInputProps {
+  placeholderTextColor?: string
+  fontWeight?: string
+}
+
+const Input: React.FC<InputProps> = (props: InputProps) => {
+  const inpuElementRef = useRef<any>(null)
+  useEffect(() => {
+    if (Platform.OS === 'android') {
+      inpuElementRef.current.setNativeProps({
+        style: {fontFamily: 'Roboto-Italic'},
+      })
+    }
+  }, [])
+
+  return <TextInput ref={inpuElementRef} {...props} />
 }
 
 export default Input

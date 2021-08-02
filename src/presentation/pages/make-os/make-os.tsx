@@ -20,7 +20,7 @@ const MakeOs: React.FC = () => {
     <>
       <Header>
         <Body>
-          <Title>FAZER OS</Title>
+          <Title>Solicitação OS</Title>
         </Body>
       </Header>
       <Container>

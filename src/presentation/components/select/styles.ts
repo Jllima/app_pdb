@@ -28,7 +28,8 @@ const Container = styled(RectButton)`
 const ButtonText = styled.Text`
   color: ${Colors.darkGrey};
   fontSize: 16px;
-  width: ${width - 100}px
+  width: ${width - 100}px;
+  font-weight: 700;
 `
 const IconButtom = styled(Icon)`
   margin-left: 5px;
@@ -54,7 +55,7 @@ const ModalTitle = styled.Text`
 const ModalCancel = styled.Text`
   font-size: 15px;
   color: ${Colors.primaryColor};
-  font-weight: 600;
+  font-weight: 700;
 `
 
 const ElementOption = styled.TouchableOpacity<ContainerProps>`
@@ -70,7 +71,7 @@ const ElementOption = styled.TouchableOpacity<ContainerProps>`
 
 const ElementText = styled.Text`
   font-size: 17px;
-  color: ${Colors.darkGrey}
+  color: ${Colors.darkGrey};
 `
 
 

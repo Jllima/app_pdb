@@ -16,12 +16,13 @@ import {imgCamera, imgLogo} from '@pdb/presentation/assets'
 import {Styles} from './styles'
 import {OrderDataModel} from '@pdb/domain/models/order-model'
 import {RemoteGetOrder} from '@pdb/data/usecases'
+import {checkEmpty} from '@pdb/presentation/helpers'
 
 type Props = {
   getOrder: RemoteGetOrder
 }
 
-const ShowOS: React.FC<Props> = ({getOrder}: Props) => {
+const ManagerShowOS: React.FC<Props> = ({getOrder}: Props) => {
   const [isLoading, setIsLoading] = useState(true)
   const [order, setOrder] = useState<OrderDataModel>({} as OrderDataModel)
 
@@ -81,6 +82,15 @@ const ShowOS: React.FC<Props> = ({getOrder}: Props) => {
                       <Text>Veículo: {order.data.vehicle.car_number}</Text>
                       <Text>Categoria: {order.data.problem.category.name}</Text>
                       <Text>Problema: {order.data.problem.description}</Text>
+                      {order.data.solution?.description && (
+                        <Text>Solução: {order.data.solution?.description}</Text>
+                      )}
+                      <Text>
+                        Descrição: {checkEmpty(order.data.description)}
+                      </Text>
+                      {order.data.car_mecanic?.name && (
+                        <Text>Mecânico: {order.data.car_mecanic?.name}</Text>
+                      )}
                     </Body>
                   </Left>
                 </CardItem>
@@ -103,4 +113,4 @@ const ShowOS: React.FC<Props> = ({getOrder}: Props) => {
   )
 }
 
-export default ShowOS
+export default ManagerShowOS

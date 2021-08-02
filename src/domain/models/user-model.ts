@@ -3,6 +3,7 @@ export type UserModel = {
   confirmation?: boolean
   username?: string
   employee_name: string
+  occupation: string
 }
 
 export type UserDataModel = {

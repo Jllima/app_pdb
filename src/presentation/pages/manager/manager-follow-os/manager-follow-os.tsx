@@ -11,7 +11,9 @@ type Props = {
   listOrdersOpenedsAndCloseds: RemoteListOrdersOpenedsAndCloseds
 }
 
-const FollowOs: React.FC<Props> = ({listOrdersOpenedsAndCloseds}: Props) => {
+const ManagerFollowOs: React.FC<Props> = ({
+  listOrdersOpenedsAndCloseds,
+}: Props) => {
   const [isLoading, setIsLoading] = useState(false)
   const [state, setState] = useState<ListOrdersOpenedsAndClosedsModel>(
     {} as ListOrdersOpenedsAndClosedsModel,
@@ -36,7 +38,7 @@ const FollowOs: React.FC<Props> = ({listOrdersOpenedsAndCloseds}: Props) => {
     <>
       <Header>
         <Body>
-          <Title>ACOMPANHAR OS</Title>
+          <Title>GERENCIAR OS</Title>
         </Body>
       </Header>
       <Container>
@@ -46,11 +48,13 @@ const FollowOs: React.FC<Props> = ({listOrdersOpenedsAndCloseds}: Props) => {
               <Spinner />
             ) : (
               <FlatList
+                data={state.openeds}
                 refreshing={isLoading}
                 onRefresh={loadOrders}
-                data={state.openeds}
                 renderItem={obj => {
-                  return <FollowOsTabContent routeName="ShowOs" os={obj.item} />
+                  return (
+                    <FollowOsTabContent routeName="ManageOS" os={obj.item} />
+                  )
                 }}
               />
             )}
@@ -60,11 +64,16 @@ const FollowOs: React.FC<Props> = ({listOrdersOpenedsAndCloseds}: Props) => {
               <Spinner />
             ) : (
               <FlatList
+                data={state.closeds}
                 refreshing={isLoading}
                 onRefresh={loadOrders}
-                data={state.closeds}
                 renderItem={obj => {
-                  return <FollowOsTabContent routeName="ShowOs" os={obj.item} />
+                  return (
+                    <FollowOsTabContent
+                      routeName="ManagerShowOs"
+                      os={obj.item}
+                    />
+                  )
                 }}
               />
             )}
@@ -75,4 +84,4 @@ const FollowOs: React.FC<Props> = ({listOrdersOpenedsAndCloseds}: Props) => {
   )
 }
 
-export default FollowOs
+export default ManagerFollowOs

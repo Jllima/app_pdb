@@ -1,13 +1,44 @@
 export type OrderModel = {
   id: number
-  car_number: string
-  category_id: number
-  category_name: string
   created_at: string
-  problem: string
   reference: string
-  status: string
-  employee_name: string
+  description: string
+  owner: {
+    id: number
+    confirmation: true
+    employee_name: string
+    username: string
+  }
+  problem: {
+    id: number
+    description: string
+    priority: string
+    category: {
+      id: number
+      name: string
+    }
+  }
+  solution?: {
+    id: number
+    description: string
+  }
+  manager?: {
+    id: number
+    name: string
+  }
+  car_mecanic?: {
+    id: number
+    name: string
+  }
+  status: {
+    id: number
+    color: string
+    name: string
+  }
+  vehicle: {
+    id: number
+    car_number: string
+  }
 }
 
 export type OrderDataModel = {

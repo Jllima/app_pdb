@@ -32,7 +32,7 @@ const Confirmation: React.FC<Props> = ({remoteConfirm}: Props) => {
         },
       })
       setState({...state, isLoading: false})
-      updateStateAccount(response.data)
+      await updateStateAccount(response.data)
     } catch (error) {
       const errorObject = error as GetMessageError
       setState({...state, isLoading: false, enableButton: true})
